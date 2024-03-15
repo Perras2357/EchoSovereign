@@ -1,13 +1,14 @@
 <?php
     //1)inclure le fichier head.php require pour éviter de l'inclure plusieurs fois
     //et signaler une erreur s'il y en a
-    chdir(dirname(__FILE__));
     require("head.php");
 ?>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-
+<!-- <script>
+    $(document).ready(function() {
+        validateFormConnexion();
+    });
+</script> -->
 <!-- formulaire de connexion qui demande un login un password et un bouton pour se connecter -->
 <div class="col-lg-8 col-md-8 offset-lg-2 offset-md-2 shadow-none p-3 mb-5 bg-light rounded p-5" >
     <form name="connexionForm" method="post" onsubmit="return validateFormConnexion()">
@@ -77,53 +78,27 @@
         {
             $.ajax(
             {
-                type: 'POST',
-                url: '../controller/authentification.php',
+                method: "POST",
+                dataType: 'json',
+                url: 'http://localhost/Debug/controller/connexion.php',
                 data: {
-                    login: login,
-                    password: password,
-                    submit : 'submit'
-                },
-                dataType: 'json', // Spécifiez le type de données attendu dans la réponse
-                success: function(response) 
-                {
-                    // Traitement de la réponse du serveur
-
-                    // Si la réponse contient des erreurs
-                    if (response.errors) 
-                    {
-                        //on efface les messages d'erreur précédents
-                        document.getElementById('error').innerHTML = '';
-                        document.getElementById('errorLogin').innerHTML = '';
-                        document.getElementById('errorPassword').innerHTML = '';
-
-                        // Affichez les erreurs ou effectuez d'autres actions nécessaires
-
-                        if (response.errors.username) 
-                        {
-                            // Gérer l'erreur du nom d'utilisateur
-                            alert(response.errors.username);
-                            document.getElementById('errorLogin').innerHTML = response.errors.username;
-                        }
-
-                        if (response.errors.password) 
-                        {
-                            // Gérer l'erreur du mot de passe
-                            document.getElementById('errorPassword').innerHTML = response.errors.password;
-                        }
-                    } 
-                    if (response.success) 
-                    {
-                        // Si l'inscription a réussi, vous pouvez effectuer d'autres actions
-                        alert("Inscription réussie !");
-                    }
-                },
-                error: function(error) 
-                {
-                    // Gérer les erreurs de la requête Ajax
-                    console.error("Erreur Ajax :", error);
+                    ajax_login: login,
+                    ajax_password: password,
+                    ajax_submit: 'submit'
                 }
+            }).done(function(response) 
+            {
+                if (response.success) {
+                    alert(response.message);
+                } else {
+                    alert(response.message);
+                }
+            }).fail(function(error) 
+            {
+                console.log(error);
+                alert("Une erreur s'est produite lors de la requête AJAX.");
             });
+
         }
         return false; // Empêcher le formulaire de se soumettre normalement
     }
