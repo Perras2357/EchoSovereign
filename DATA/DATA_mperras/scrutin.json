@@ -1,0 +1,95 @@
+{
+    "Delegue": {
+        "organisation": "Paris-saclay",
+        "description": "Vote du delegue",
+        "debut": "22-03-2024 00:12:00",
+        "fin": "24-03-2024 00:12:00",
+        "voteSimple": "NDAM?",
+        "etat": "ouvert",
+        "votants": [
+            {
+                "email": "PERRAS",
+                "motdepasse": "$2y$10$RBTF8lJZZGDE2PAhnMgwTueaZwHTPwrm55JcWJun5z4LEjYsTAAse"
+            },
+            {
+                "email": "Moi",
+                "motdepasse": "$2y$10$4Hn0O7OcOQhuf94vIBiU\/.JkH11nFgOUdwABjiMXS\/iu784wkZBCS"
+            }
+        ]
+    },
+    "Premi": {
+        "organisation": "Paris-saclay",
+        "description": "uygug",
+        "debut": "22-03-2024 01:28:00",
+        "fin": "23-03-2024 01:28:00",
+        "voteSimple": "hgghgh?",
+        "etat": "ouvert",
+        "votants": [
+            {
+                "email": "moi",
+                "motdepasse": "nmFcvJhOM"
+            },
+            {
+                "email": "toi",
+                "motdepasse": "xHvhP8lyO"
+            },
+            {
+                "email": "nous",
+                "motdepasse": "3jsetVxbO"
+            },
+            {
+                "email": "per",
+                "motdepasse": "tFghXiTs1"
+            },
+            {
+                "email": "mer",
+                "motdepasse": "KmPKBSXT0"
+            },
+            {
+                "email": "gros",
+                "motdepasse": "WSXfIYOyj"
+            }
+        ]
+    },
+    "Vote1": {
+        "organisation": "institut",
+        "description": "jkjkfjkfkjf",
+        "debut": "22-03-2024 02:54:00",
+        "fin": "24-03-2024 02:54:00",
+        "voteSimple": "Hiphop?",
+        "etat": "ouvert",
+        "votants": []
+    },
+    "Premier90": {
+        "organisation": "institut",
+        "description": "iugiugi",
+        "debut": "22-03-2024 03:05:00",
+        "fin": "24-03-2024 03:05:00",
+        "voteSimple": "do you",
+        "etat": "ouvert",
+        "votants": [
+            {
+                "email": "moiseperras2357@gmail.com",
+                "motdepasse": "Fxy9RWGr5"
+            }
+        ]
+    },
+    "Delegue1": {
+        "organisation": "Popotin2",
+        "description": "RTRTTRT",
+        "debut": "27-03-2024 23:35:00",
+        "fin": "28-03-2024 23:35:00",
+        "voteSimple": "Pourquoi ?",
+        "etat": "ouvert",
+        "votants": [
+            {
+                "email": "moiseperras2357@icloud.com",
+                "motdepasse": "ZhmrOnYep"
+            },
+            {
+                "email": "moiseperras2357@icloud.com",
+                "motdepasse": "xIkF3Tvsn"
+            }
+        ]
+    }
+}

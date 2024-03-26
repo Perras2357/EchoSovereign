@@ -4,11 +4,6 @@
     require("head.php");
 ?>
 
-<!-- <script>
-    $(document).ready(function() {
-        validateFormConnexion();
-    });
-</script> -->
 <!-- formulaire de connexion qui demande un login un password et un bouton pour se connecter -->
 <div class="col-lg-8 col-md-8 offset-lg-2 offset-md-2 shadow-none p-3 mb-5 bg-light rounded p-5" >
     <form name="connexionForm" method="post" onsubmit="return validateFormConnexion()">
@@ -38,12 +33,18 @@
             <button type="submit" class="btn btn-primary  col-md-2 offset-md-5" id="submit" name="submit">Submit</button>
         </div>
     </form>
+    <div class="row">
+        <div class="col-md-9 offset-md-3 " id="inscription">
+
+        </div>
+    </div>
 </div>
    
     <!-- code javascript permettant de valider les champs du formulaire -->
 <script>
     //fonction permettant de valider les champs du formulaire de connexion
-    function validateFormConnexion() {
+    function validateFormConnexion() 
+    {
         // Réinitialiser les messages d'erreur
         document.getElementById('errorLogin').innerHTML = '';
         document.getElementById('errorPassword').innerHTML = '';
@@ -80,7 +81,7 @@
             {
                 method: "POST",
                 dataType: 'json',
-                url: 'http://localhost/Debug/controller/connexion.php',
+                url: 'http://localhost/EchoSovereign/controller/connexion.php',
                 data: {
                     ajax_login: login,
                     ajax_password: password,
@@ -88,10 +89,21 @@
                 }
             }).done(function(response) 
             {
-                if (response.success) {
-                    alert(response.message);
-                } else {
-                    alert(response.message);
+                if (response.success) 
+                {
+                    // Rediriger l'utilisateur vers la page d'organisation des scrutins
+                    window.location.href = 'view/organisation_scrutin.view.php';
+                } 
+                else 
+                {
+                    if (response.message == 'Ce login n\'existe pas.') 
+                    {
+                        document.getElementById('inscription').innerHTML = '<a href="view/inscription.view.php">Pas de compte ? Inscrivez-vous !</a>';
+                    }
+                    else
+                    {
+                        document.getElementById('inscription').innerHTML = response.message;
+                    }
                 }
             }).fail(function(error) 
             {
