@@ -2,5 +2,21 @@
     "mperras": {
         "login": "mperras",
         "password": "2357"
+    },
+    "Z": {
+        "login": "Z",
+        "password": "1234"
+    },
+    "alida": {
+        "login": "alida",
+        "password": "1234"
+    },
+    "ndam": {
+        "login": "ndam",
+        "password": "1234"
+    },
+    "mndam": {
+        "login": "mndam",
+        "password": "1234"
     }
 }

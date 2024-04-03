@@ -23,6 +23,8 @@
         }
         else
         {
+            //on supprime les retours à la ligne
+            $votant = str_replace(array("\n", "\r"), '', $votant);
             //on parcout $votant et lorsqu'on trouve une virgule on mets tout ce qui est avant la virgule dans une case du tableau $tab_votant
             $tab_votant = explode(",", $votant);
 
@@ -34,36 +36,29 @@
                 foreach ($tab_votant as $vt) 
                 {
                     $motdepasse = generateRandomPassword();
-                    $authentification_votant[] = array("email" => $vt, "motdepasse" => $motdepasse);
+                    $authentification_votant[] = array("email" => $vt, "motdepasse" => $motdepasse, "etat_vote"=>"non");
                     //on charge le fichier json
                     $jsonString = file_get_contents('../DATA/DATA_'.$_SESSION['login'].'/scrutin.json');
                     $data = json_decode($jsonString, true);
 
-                    // Chercher si X se trouve dans votants qui appartient à "premier"
-                    if (in_array($vt, $data[$_SESSION['titre']]['votants'])) 
-                    {
-                        // X se trouve dans votants de "premier"
-                        $response['message'] = 'X se trouve dans votants de "premier".';
-                        $response['success'] = true;
-                    } 
-                    else 
-                    {
-                        //on crée un tableau associatif avec les données du formulaire
-                        $data[$_SESSION['titre']]['votants'][] = array("email" => $vt, "motdepasse" => $motdepasse);
-                        //on convertit le tableau associatif en format json
-                        $json_data = json_encode($data, JSON_PRETTY_PRINT);
-                        //on écrit le json dans le fichier
-                        file_put_contents('../DATA/DATA_'.$_SESSION['login'].'/scrutin.json', $json_data);
-                        $response['message'] = sendMail($vt, $motdepasse,$_SESSION['titre']);
-                        if ($response['message'] == true) 
-                        {
-                            $response['success'] = true;
-                        }
-                        else
-                        {
-                            $response['success'] = false;
-                        }
-                    }
+                   
+                    //on crée un tableau associatif avec les données du formulaire
+                    $data[$_SESSION['titre']]['votants'][] = array("email" => $vt, "motdepasse" => $motdepasse,"etat_vote"=>"non");
+                    //on convertit le tableau associatif en format json
+                    $json_data = json_encode($data, JSON_PRETTY_PRINT);
+                    //on écrit le json dans le fichier
+                    file_put_contents('../DATA/DATA_'.$_SESSION['login'].'/scrutin.json', $json_data);
+                    $response['message'] = true;
+                    $response['success'] = true;
+                        // $response['message'] = sendMail($vt, $motdepasse,$_SESSION['titre']);
+                        // if ($response['message'] == true) 
+                        // {
+                        //     $response['success'] = true;
+                        // }
+                        // else
+                        // {
+                        //     $response['success'] = false;
+                        // }
                      
                 }
                //******************************************************************************// */    
@@ -75,38 +70,25 @@
                 foreach ($tab_votant as $vt) 
                 {
                     $motdepasse = generateRandomPassword();
-                    $authentification_votant[] = array("email" => $vt, "motdepasse" => $motdepasse);
+                    //$authentification_votant[] = array("email" => $vt, "motdepasse" => $motdepasse, "etat_vote"=>"non");
                     //on crée un tableau associatif avec les données du formulaire
-                    $data[$votant] = array("email" => $vt, "motdepasse" => $motdepasse);
+                    $data[$votant] = array("email" => $vt, "motdepasse" => $motdepasse, "etat_vote"=>"non");
                     //on convertit le tableau associatif en format json
                     $json_data = json_encode($data, JSON_PRETTY_PRINT);
                     //on écrit le json dans le fichier
                     file_put_contents('../DATA/DATA_'.$_SESSION['login'].'/scrutin.json', $json_data);
-                    $response['message'] = sendMail($vt, $motdepasse,$_SESSION['titre']);
-                    if ($response['message'] == true) 
-                    {
-                        $response['success'] = true;
-                    }
-                    else
-                    {
-                        $response['success'] = false;
-                    }
+                    $response['message'] = true;
+                    $response['success'] = true;
+                    // $response['message'] = sendMail($vt, $motdepasse,$_SESSION['titre']);
+                    // if ($response['message'] == true) 
+                    // {
+                    //     $response['success'] = true;
+                    // }
+                    // else
+                    // {
+                    //     $response['success'] = false;
+                    // }
                 }
-                
-
-                
-                
-                
-                
-                //on crée un tableau associatif avec les données du formulaire
-                $data[$votant] = array("email" => $votant);
-                //on convertit le tableau associatif en format json
-                $json_data = json_encode($data, JSON_PRETTY_PRINT);
-                //on écrit le json dans le fichier
-                file_put_contents('../DATA/DATA_'.$_SESSION['login'].'/scrutin.json', $json_data);
-
-                $response['message'] = "Votant ajouté.".$votant;
-                $response['success'] = true;
             }
             
         }

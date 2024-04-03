@@ -1,4 +1,4 @@
 <?php
-    require("view/connexion.view.php") ;
+    require("controller/connexion.php") ;
 ?>
 
