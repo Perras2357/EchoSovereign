@@ -148,7 +148,7 @@
             $.ajax({
                 type: "POST",
                 dataType: "json",
-                url: "http://localhost/EchoSovereignV2/controller/votant.controller.php",
+                url: "http://localhost/EchoSovereign/controller/votant.controller.php",
                 data: { votantData: jsonData },
             }).done(function (reponse) 
             {

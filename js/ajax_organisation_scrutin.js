@@ -7,7 +7,7 @@
         $.ajax({
             type: "POST",
             dataType: 'json',
-            url: "http://localhost/EchoSovereignV2/controller/liste_scrutin.php",
+            url: "http://localhost/EchoSovereign/controller/liste_scrutin.php",
             data: {organisateur: 1}
         }).done(function(response) 
         {
@@ -60,7 +60,7 @@
                 $.ajax({
                     type: "POST",
                     dataType: 'json',
-                    url: "http://localhost/EchoSovereignV2/controller/gestion_votant.php",
+                    url: "http://localhost/EchoSovereign/controller/gestion_votant.php",
                     data: {votant:votant}
                 }).done(function(response) 
                 {
@@ -173,7 +173,7 @@
                 $.ajax({
                     type: "POST",
                     dataType: 'json',
-                    url: "http://localhost/EchoSovereignV2/controller/traitement_organisation_scrutin.php",
+                    url: "http://localhost/EchoSovereign/controller/traitement_organisation_scrutin.php",
                     data: {titre:titre, organisation:organisation, 
                         description:description, fin:dateFin, debut:dateDebut, 
                         voteSimple:voteSimple}

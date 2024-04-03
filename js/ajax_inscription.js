@@ -43,7 +43,7 @@ function validateFormInscription()
         {
             method: "POST",
             dataType: 'json',
-            url: 'http://localhost/EchoSovereignV2/controller/traitement_inscription.php',
+            url: 'http://localhost/EchoSovereign/controller/traitement_inscription.php',
             data: {
                 inscr_login: login,
                 inscr_password: password

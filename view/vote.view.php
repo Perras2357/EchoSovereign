@@ -36,7 +36,7 @@
         $.ajax({
             type: "POST",
             dataType: 'json',
-            url: "http://localhost/EchoSovereignV2/controller/traitement_vote.php",
+            url: "http://localhost/EchoSovereign/controller/traitement_vote.php",
             data: {votant: 1}
         }).done(function(response) 
         {

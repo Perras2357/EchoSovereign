@@ -121,6 +121,15 @@
                             <span style="color: red;" id="errorVoteSimple" class="error"></span><br>
                         </div>
                     </div>
+                    <!-- zone de texte pour entrer la question du vote simple et les choix possibles -->
+                    <div class="row mb-3">
+                        <label for="questionSimple" class="col-form-label">Question</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" id="questionSimple" name="questionSimple">
+                            <span style="color: red;" id="errorQuestionSimple" class="error"></span><br>
+                        </div>
+                        <label for="choixSimple" class="col-form-label">Choix</label>
+                        
                 </div>
 
                 <!-- bouton pour créer le vote -->
