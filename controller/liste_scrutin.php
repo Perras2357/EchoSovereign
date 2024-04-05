@@ -6,13 +6,15 @@ session_start();
 $response = array();
 
 // Vérifie si l'utilisateur est connecté
-if (isset($_SESSION['login'])) {
+if (isset($_POST['organisateur']) && isset($_SESSION['login'])) 
+{
     // Vérifie si le répertoire DATA existe
     $dataDirectory = '../DATA/DATA_' . $_SESSION['login'];
     if (file_exists($dataDirectory)) {
         // Vérifie si le fichier scrutin.json existe
         $scrutinFile = $dataDirectory . '/scrutin.json';
-        if (file_exists($scrutinFile)) {
+        if (file_exists($scrutinFile)) 
+        {
             // Récupère le contenu du fichier scrutin.json
             $scrutinData = file_get_contents($scrutinFile);
             if ($scrutinData !== false) {
@@ -76,11 +78,17 @@ if (isset($_SESSION['login'])) {
         $response['message'] = 'Le répertoire de données n\'existe pas pour l\'utilisateur connecté.';
         $response['success'] = false;
     }
-} else {
-    $response['message'] = 'Vous devez vous connecter pour accéder à cette page.';
+} 
+else 
+{
+    $response['message'] = 'Erreur : utilisateur non connecté.';
     $response['success'] = false;
 }
-
+// Définit les en-têtes CORS
+// Définit l'en-tête CORS pour autoriser les ressources provenant d'un réseau privé
+header("Access-Control-Allow-Private-Network: true");
+header("Access-Control-Allow-Origin: *"); // Autorise les requêtes depuis n'importe quelle origine
+header("Content-Type: application/json"); // Définit le type de contenu comme JSON
 // Convertit la réponse en JSON et l'envoie
 echo json_encode($response);
 ?>

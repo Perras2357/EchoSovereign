@@ -117,30 +117,35 @@
                     <div class="row mb-3" >
                         <label for="voteSimple" class="col-form-label">Vote simple</label>
                         <div class="col-md-9">
-                            <textarea class="form-control" id="voteSimple" name="voteSimple" rows="3"></textarea>
+                            <input class="form-control" id="voteSimple" name="voteSimple" rows="3">
                             <span style="color: red;" id="errorVoteSimple" class="error"></span><br>
                         </div>
                     </div>
                     <!-- zone de texte pour entrer la question du vote simple et les choix possibles -->
                     <div class="row mb-3">
-                        <label for="questionSimple" class="col-form-label">Question</label>
-                        <div class="col-md-9">
-                            <input type="text" class="form-control" id="questionSimple" name="questionSimple">
-                            <span style="color: red;" id="errorQuestionSimple" class="error"></span><br>
+                        <!-- zone de texte pour entrer les choix possibles -->
+                        <div class="col-md-9" id="addReponse">
+                            <label for="reponse" class="col-form-label">Choix :</label>
+                            <input type="text" id="reponse" name="reponse">
+                            <button onclick="addReponseToList(event)">Ajouter</button>
+                            <span style="color: red;" id="errorChoixSimple" class="error"></span><br>
+                            <ul id="listReponse">
+                                <!-- Les réponses ajoutées seront affichées ici -->
+                            </ul>
                         </div>
-                        <label for="choixSimple" class="col-form-label">Choix</label>
-                        
-                </div>
+                            
+                    </div>
 
                 <!-- bouton pour créer le vote -->
                 <div class="mb-3 py-2">
                     <button type="submit" class="btn btn-primary  col-md-2 offset-md-4" id="submit" name="submit">Suivant</button>
                 </div>
             </form>
-
+        </div>
+        <div class="col-lg-10 col-md-10 offset-lg-1 offset-md-1 shadow-none p-3 mb-5 bg-light rounded p-5">
             <!-- formulaire de création de votants dans un champs de textarea de maximum 30 lignes -->
             <form name="votantForm" method="post" onsubmit="return validateFormVotant()" id="FormVotant">
-                <div class="row mb-3">
+                <!-- <div class="row mb-3">
                     <label for="votant" class="col-form-label">Votants</label>
                     <div class="col-md-9">
                         <textarea class="form-control" id="votant" name="votant" rows="12"></textarea>
@@ -149,7 +154,41 @@
                 </div>
                 <div class="mb-3 py-2">
                     <button type="submit" class="btn btn-primary  col-md-2 offset-md-4" id="submit1" name="submit1">Créer</button>
+                </div> -->
+
+                <div class="row mb-3">
+                    <div class="col-md-10" id="addReponse">
+                        <label for="email" class="col-form-label">Email :</label>
+                        <input type="email" id="email" name="email" autocomplete="email">  
+                        Donner procuration <input type="checkbox" name="donnerProcuration" id="donnerProcuration">
+                        <label for="nombreProcuration" class="col-form-label" max=3>  Nombre procuration :</label>
+                        <input type="number" id="nombreProcuration" name="nombreProcuration">
+                        <button onclick="addRow(event)">Ajouter</button>
+                        <span style="color: red;" id="errorAjout" class="error"></span><br>
+                    </div>
                 </div>
+                <div class="row mb-3">
+                    <div class="col-md-10">
+                        <table id="tableProcuration" class="table">
+                            <thead>
+                                <tr>
+                                    <th>Email</th>
+                                    <th>Nombre de procuration</th>
+                                    <th>Donner procuration</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tableBody">
+                                <!-- Les lignes ajoutées seront affichées ici -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="mb-3 py-2">
+                    <button type="submit" class="btn btn-primary  col-md-2 offset-md-4" id="submit" name="submit">Envoyer</button>
+                    <span style="color: red;" id="errorVotant" class="error"></span><br>
+                </div>   
+
+
             </form>
         </div>
     </div>
@@ -157,7 +196,7 @@
     
     <!-- inclure le fichier js pour la validation du formulaire -->
     <script src="../js/ajax_organisation_scrutin.js"></script>
-    
+  
 
 
 

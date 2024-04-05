@@ -6,10 +6,12 @@ session_start();
 $response = array();
 
 // Vérifie si l'utilisateur est connecté
-if (isset($_SESSION['login'])) {
+if (isset($_SESSION['login'])) 
+{
     // Vérifie si le répertoire DATA existe
     $dataDirectory = '../DATA/DATA_' . $_SESSION['scrutin'];
-    if (file_exists($dataDirectory)) {
+    if (file_exists($dataDirectory)) 
+    {
         // Vérifie si le fichier scrutin.json existe
         $scrutinFile = $dataDirectory . '/scrutin.json';
         if (file_exists($scrutinFile)) 
@@ -32,8 +34,20 @@ if (isset($_SESSION['login'])) {
                         $description = isset($scrutinItem['description']) ? $scrutinItem['description'] : '';
                         $debut = isset($scrutinItem['debut']) ? $scrutinItem['debut'] : '';
                         $fin = isset($scrutinItem['fin']) ? $scrutinItem['fin'] : '';
+                        $voteSimple = isset($scrutinItem['voteSimple']) ? $scrutinItem['voteSimple'] : '';
+                        //$options = isset($scrutinItem['options']) ? $scrutinItem['options'] : '';
                         $etat = isset($scrutinItem['etat']) ? $scrutinItem['etat'] : '';
                         $nbr_votants = isset($scrutinItem['votants']) ? count($scrutinItem['votants']) : 1;
+
+                        $options = [];
+
+                        if (isset($scrutinItem['options']) && is_array($scrutinItem['options'])) 
+                        {
+                            foreach ($scrutinItem['options'] as $option) {
+                                $options[] = $option;
+                            }
+                        }
+
 
                         // Compte le nombre de votes
                         $nbr_votes = 0;
@@ -60,6 +74,8 @@ if (isset($_SESSION['login'])) {
                                 'description' => $description,
                                 'debut' => $debut,
                                 'fin' => $fin,
+                                'voteSimple' => $voteSimple,
+                                'options' => $options,
                                 'acces_vote' => $etat,
                                 'je_peux_voter' => $votant['etat_vote'],
                                 'nbr_votants' => $nbr_votants,

@@ -1,22 +1,4 @@
 {
-    "Delegue": {
-        "organisation": "Paris-saclay",
-        "description": "Vote du delegue",
-        "debut": "22-03-2024 00:12:00",
-        "fin": "24-03-2024 00:12:00",
-        "voteSimple": "NDAM?",
-        "etat": "ouvert",
-        "votants": [
-            {
-                "email": "PERRAS",
-                "motdepasse": "$2y$10$RBTF8lJZZGDE2PAhnMgwTueaZwHTPwrm55JcWJun5z4LEjYsTAAse"
-            },
-            {
-                "email": "Moi",
-                "motdepasse": "$2y$10$4Hn0O7OcOQhuf94vIBiU\/.JkH11nFgOUdwABjiMXS\/iu784wkZBCS"
-            }
-        ]
-    },
     "Premi": {
         "organisation": "Paris-saclay",
         "description": "uygug",
@@ -228,6 +210,272 @@
                 "email": "v;ffere;erertzrtztzetz;zertzetze",
                 "motdepasse": "l6qjy9U05",
                 "etat_vote": "non"
+            }
+        ]
+    },
+    "nouveau": {
+        "organisation": "new",
+        "description": "",
+        "debut": "04-04-2024 07:47:00",
+        "fin": "11-04-2024 07:47:00",
+        "voteSimple": "president",
+        "options": [
+            "moi",
+            "toi"
+        ],
+        "etat": "fermer",
+        "votants": [
+            {
+                "email": "yyuyuyuuyuyyu",
+                "motdepasse": "ZVlH1ULks",
+                "etat_vote": "non"
+            },
+            {
+                "email": "uyyguyuyfuyf",
+                "motdepasse": "OLnS5zAcO",
+                "etat_vote": "non"
+            },
+            {
+                "email": "uyfuyfufy",
+                "motdepasse": "fMf16qhR7",
+                "etat_vote": "non"
+            }
+        ]
+    },
+    "Premier uy": {
+        "organisation": "Paris-saclay",
+        "description": "",
+        "debut": "04-04-2024 08:35:00",
+        "fin": "05-04-2024 08:35:00",
+        "voteSimple": "president",
+        "options": [
+            "moi",
+            "moi"
+        ],
+        "etat": "fermer",
+        "votants": []
+    },
+    "Premier bnbn": {
+        "organisation": "Paris-saclay",
+        "description": "n",
+        "debut": "04-04-2024 08:40:00",
+        "fin": "10-04-2024 08:40:00",
+        "voteSimple": "nnb",
+        "options": [
+            "moi"
+        ],
+        "etat": "fermer",
+        "votants": [
+            {
+                "email": "bbb",
+                "motdepasse": "0ik9dYn5U",
+                "etat_vote": "non"
+            },
+            {
+                "email": "jfkjfdkjdf",
+                "motdepasse": "c8kOxPa1V",
+                "etat_vote": "non"
+            },
+            {
+                "email": "kdkjdfkdf",
+                "motdepasse": "BatYxEDcD",
+                "etat_vote": "non"
+            },
+            {
+                "email": "idfidf",
+                "motdepasse": "FIHdls8x3",
+                "etat_vote": "non"
+            }
+        ]
+    },
+    "NOUVEAU": {
+        "organisation": "NEW",
+        "description": "IFIDF",
+        "debut": "04-04-2024 10:00:00",
+        "fin": "06-04-2024 10:00:00",
+        "voteSimple": "BIEN ?",
+        "options": [
+            "moi",
+            "TOI"
+        ],
+        "etat": "fermer",
+        "votants": [
+            {
+                "email": "proteus7532@gmail.com",
+                "motdepasse": "3WyOT3rw1",
+                "etat_vote": "non",
+                "procuration": "0"
+            },
+            {
+                "email": "moise.ndam-perras@univers",
+                "motdepasse": "LYpydreqC",
+                "etat_vote": "non",
+                "procuration": "2"
+            }
+        ]
+    },
+    "Premier IDSSD": {
+        "organisation": "Popotin",
+        "description": "",
+        "debut": "04-04-2024 10:03:00",
+        "fin": "18-04-2024 10:03:00",
+        "voteSimple": "president??",
+        "options": [
+            "moi",
+            "TOI"
+        ],
+        "etat": "fermer",
+        "votants": [
+            {
+                "email": "proteus7532@gmail.com",
+                "motdepasse": "aELrgH7Q7",
+                "etat_vote": "non",
+                "procuration": "0"
+            },
+            {
+                "email": "perras@universite-paris-saclay.fr",
+                "motdepasse": "oOX66a4MP",
+                "etat_vote": "non",
+                "procuration": "0"
+            },
+            {
+                "email": "moise.ndam-perras@universit",
+                "motdepasse": "pi3sNpv1b",
+                "etat_vote": "non",
+                "procuration": "2"
+            },
+            {
+                "email": "proteus7532@gmail.com",
+                "motdepasse": "7q7oeMIuk",
+                "etat_vote": "non",
+                "procuration": "0"
+            },
+            {
+                "email": "perras@universite-paris-saclay.fr",
+                "motdepasse": "CAjccpYwm",
+                "etat_vote": "non",
+                "procuration": "0"
+            },
+            {
+                "email": "moise.ndam-perras@universit",
+                "motdepasse": "xOZSbeVbY",
+                "etat_vote": "non",
+                "procuration": "2"
+            }
+        ]
+    },
+    "Premier oop": {
+        "organisation": "pool",
+        "description": "",
+        "debut": "04-04-2024 14:14:00",
+        "fin": "18-04-2024 14:14:00",
+        "voteSimple": ",nvd,nd,ndv,nvn,vd",
+        "options": [
+            "moi",
+            "moi"
+        ],
+        "etat": "fermer",
+        "votants": []
+    },
+    "lkklklkllk": {
+        "organisation": "opopo",
+        "description": "",
+        "debut": "11-04-2024 14:15:00",
+        "fin": "19-04-2024 14:15:00",
+        "voteSimple": "Vote du president",
+        "options": [
+            "moi"
+        ],
+        "etat": "fermer",
+        "votants": [
+            {
+                "email": "proteus7532@gmail.com",
+                "motdepasse": "UvYvJ8QI0",
+                "etat_vote": "non",
+                "procuration": "0"
+            }
+        ]
+    },
+    "Premier877": {
+        "organisation": "Popotin9898",
+        "description": "",
+        "debut": "04-04-2024 14:18:00",
+        "fin": "05-04-2024 14:18:00",
+        "voteSimple": "Vote du president",
+        "options": [
+            "moi"
+        ],
+        "etat": "fermer",
+        "votants": [
+            {
+                "email": "moise.ndam-perras@universite",
+                "motdepasse": "V6UvBUnxw",
+                "etat_vote": "non",
+                "procuration": "0"
+            },
+            {
+                "email": "moise.ndam-perras@universit",
+                "motdepasse": "QVt1QVmJv",
+                "etat_vote": "non",
+                "procuration": "0"
+            },
+            {
+                "email": "proteus7532@gmail.com",
+                "motdepasse": "GGonsLhsh",
+                "etat_vote": "non",
+                "procuration": "2"
+            }
+        ]
+    },
+    "azjkjj": {
+        "organisation": "op",
+        "description": "",
+        "debut": "04-04-2024 14:33:00",
+        "fin": "27-04-2024 14:33:00",
+        "voteSimple": "kjkjk",
+        "options": [
+            "moi",
+            "toi"
+        ],
+        "etat": "ouvert",
+        "votants": [
+            {
+                "email": "proteus7532@gmail.com",
+                "motdepasse": "nFX0yBMkD",
+                "etat_vote": "non",
+                "procuration": "0"
+            },
+            {
+                "email": "moise.ndam-perras@univers",
+                "motdepasse": "vlApTy3su",
+                "etat_vote": "non",
+                "procuration": "2"
+            }
+        ]
+    },
+    "Premier oioi": {
+        "organisation": "mojml",
+        "description": "",
+        "debut": "04-04-2024 14:57:00",
+        "fin": "19-04-2024 14:57:00",
+        "voteSimple": "president",
+        "options": [
+            "moi",
+            "toi"
+        ],
+        "etat": "ouvert",
+        "votants": [
+            {
+                "email": "moise.ndam-perras@univers",
+                "motdepasse": "kfZpRCNY5",
+                "etat_vote": "non",
+                "procuration": "0"
+            },
+            {
+                "email": "proteus7532@gmail.com",
+                "motdepasse": "ielkfQLvj",
+                "etat_vote": "non",
+                "procuration": "0"
             }
         ]
     }

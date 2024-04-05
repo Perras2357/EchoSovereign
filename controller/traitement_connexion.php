@@ -1,6 +1,5 @@
 <?php
-    // Autoriser les requêtes CORS depuis n'importe quelle origine
-    header("Access-Control-Allow-Origin: *");
+
     // Start the session
     session_start();
 
@@ -8,17 +7,14 @@
 
     // $maVar = htmlspecialchars($_GET[]);
 
-    if (($_GET['ajax_submit']))
+    if (isset($_POST['ajax_submit']))
     {
-        foreach ($_GET as $key => $value)
+        foreach ($_POST as $key => $value)
         {
-            $_GET[$key] = htmlspecialchars($value);
+            $_POST[$key] = htmlspecialchars($value);
         }
 
-        extract($_GET);
-
-        //on crée une session pour l'utilisateur
-        $_SESSION['login'] = $ajax_login;
+        extract($_POST);
         
         // on vérifie si le fichier organisateurs.json existe dans le repertoire DATA
         if (file_exists('../DATA/organisateurs.json') and filesize('../DATA/organisateurs.json') > 0)
@@ -33,6 +29,8 @@
                 //on vérifie si le mot de passe correspond au login
                 if ($data[$ajax_login]['password'] == $ajax_password) 
                 {
+                    //on crée une session pour l'utilisateur
+                    $_SESSION['login'] = $ajax_login;
                     $response['message'] = 'Bienvenue ';
                     $response['success'] = true;
 
@@ -85,5 +83,10 @@
         $response['success'] = false;
     }
 
+    // Définit les en-têtes CORS
+// Définit l'en-tête CORS pour autoriser les ressources provenant d'un réseau privé
+header("Access-Control-Allow-Private-Network: true");
+header("Access-Control-Allow-Origin: *"); // Autorise les requêtes depuis n'importe quelle origine
+header("Content-Type: application/json"); // Définit le type de contenu comme JSON
     echo json_encode($response);
 ?>

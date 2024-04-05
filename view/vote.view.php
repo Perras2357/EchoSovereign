@@ -5,7 +5,7 @@
  <!-- ici on affiche tout les scrutins -->
  <div class="container" id="liste_scrutin">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-12 offset-md-1">
                 <h3 class="text-center">Liste des scrutins</h3>
                 <table class="table table-striped">
                     <thead>
@@ -15,7 +15,7 @@
                             <th scope="col">Description</th>
                             <th scope="col">Début</th>
                             <th scope="col">Fin</th>
-                            <th scope="col">Accès au vote</th>
+                            <th scope="col">Etat</th>
                             <th scope="col">Je peux voter</th>
                             <th scope="col">Nombre de Votants</th>
                             <th scope="col">Nombre de Votes</th>
@@ -28,43 +28,35 @@
                 </table>
             </div>
         </div>
+        <div class="row" id='vote'>
+            <form class="col-md-8 offset-md-1" id="form_vote" method="POST">
+                <div class="col-md-2">
+                    <h3 id="question">  </h3>                
+                </div>
+                <div class="col-md-2">
+                    <label for="choix">Choix</label>
+                    <select class="form-control" id="choix" name="choix">
+                        <!-- ici on affiche les options de vote -->
+                    </select>                 
+                </div>
+            </form>
+        </div>
+            
+        </div>
     </div>
+    <script src="../js/ajax_vote.js"></script>
 
 
 
-    <script>
-        $.ajax({
-            type: "POST",
-            dataType: 'json',
-            url: "http://localhost/EchoSovereign/controller/traitement_vote.php",
-            data: {votant: 1}
-        }).done(function(response) 
-        {
-            if(response.success)
-            {
-                console.log(response);
-                //on parcourt le tableau de scrutins et on les affiche dans le tableau
-                response.scrutins.forEach(scrutin => {
-                    $('#liste_scrutin table tbody').append('<tr><td>'+scrutin.titre+
-                        '</td><td>'+scrutin.organisation+'</td><td>'+scrutin.description+
-                        '</td><td>'+scrutin.debut+'</td><td>'+scrutin.fin+'</td><td>'+scrutin.acces_vote+
-                        '</td><td>'+scrutin.je_peux_voter+'</td><td>'+scrutin.nbr_votants+'</td><td>'+scrutin.nbr_votes+'</td></tr>');
-                });
-            }
-            else
-            {
-                console.log(response);
+<script>
+    //je coonstruis le formulaire de vote en fonction des questions et des réponses dans le formulaire de vote qui a l'id form_vot
 
-            }
-        }).fail(function(error) 
-        {
-            alert( "error" );
-            console.log(error);
-        });
-    </script>
+        
+        
 
+        
 
-
+</script>
 
 
 

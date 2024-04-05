@@ -38,7 +38,7 @@ function validateFormConnexion()
 
         $.ajax(
         {
-            method: "GET",
+            method: "POST",
             dataType: 'json',
             url: 'controller/traitement_connexion.php',
             data: {

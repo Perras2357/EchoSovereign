@@ -39,6 +39,11 @@
             $response['message'] = 'La date de fin doit etre supérieure a la date de debut.';
             $response['success'] = false;
         }
+        elseif(empty($reponses))
+        {
+            $response['message'] = 'Veuillez entrer au moins une option de vote.';
+            $response['success'] = false;
+        }
         elseif ($voteSimple === "")         //si voteSimple est vide
         {
             $response['message'] = 'Veuillez choisir un type de vote.';
@@ -62,7 +67,7 @@
                     //on crée le fichier json du scrutin dans le repertoire DATA/DATA_'.$_SESSION['login']
                     $data[$titre]= array("organisation" => $organisation, "description" => $description, 
                         "debut" => $debut_formate, "fin" => $fin_formate, 
-                        "voteSimple" => $voteSimple, "etat"=>$etat, "votants" => array());
+                        "voteSimple" => $voteSimple, 'options' => $reponses, "etat"=>$etat, "votants" => array());
                     $json = json_encode($data, JSON_PRETTY_PRINT);
                     file_put_contents('../DATA/DATA_'.$_SESSION['login'].'/scrutin.json', $json);
 
@@ -86,7 +91,7 @@
                         //on crée un tableau associatif avec les données du formulaire
                         $existing_data[$titre]= array("organisation" => $organisation, "description" => $description, 
                             "debut" => $debut_formate, "fin" => $fin_formate, 
-                            "voteSimple" => $voteSimple, "etat"=>$etat, "votants" => array());
+                            "voteSimple" => $voteSimple, 'options' => $reponses, "etat"=>$etat, "votants" => array());
                         //on convertit le tableau associatif en format json
                         $json_data = json_encode($existing_data, JSON_PRETTY_PRINT);
                         //on écrit le json dans le fichier

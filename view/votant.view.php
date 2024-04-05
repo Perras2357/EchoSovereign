@@ -8,169 +8,115 @@
         <div class="col-md-12">
             <h1 class="text-center">Création des votants</h1>
             <form name="votantForm" method="post" id="votantForm" class="p-2">
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th scope="col">Mail</th>
-                            <th scope="col">Nombre de procuration</th>
-                            <th scope="col">Donner procuration</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><input type="text" class="form-control" id="mail1" name="mail1" required></td>
-                            <td><input type="number" class="form-control" id="nbProcuration1" name="nbProcuration1" value="0" max='2'></td>
-                            <td><input type="checkbox" class="form-check-input" id="donnerProcuration1" name="donnerProcuration1"></td>
-                        </tr>
-                    </tbody>
-                </table>
-                <!-- div pour afficher les erreurs -->
-                <div class="row">
-                    <div class="col-md-12 text-center">
-                        <div id="error" class="text-danger"></div>
+                <div class="row mb-3">
+                    <div class="col-md-10" id="addReponse">
+                        <label for="email" class="col-form-label">Email :</label>
+                        <input type="email" id="email" name="email">  
+                        Donner procuration <input type="checkbox" name="donnerProcuration" id="donnerProcuration">
+                        <label for="nombreProcuration" class="col-form-label" max=3>  Nombre procuration :</label>
+                        <input type="number" id="nombreProcuration" name="nombreProcuration">
+                        <button onclick="addRow(event)">Ajouter</button>
+                        <span style="color: red;" id="errorAjout" class="error"></span><br>
                     </div>
                 </div>
-                <!-- bouton pour créer les votants -->
-                <div class="row">
-                    <div class="col-md-12 text-center">
-                        <button type="button" class="btn btn-primary" onclick="sendData()">Créer</button>
+                <div class="row mb-3">
+                    <div class="col-md-9">
+                        <table id="tableProcuration" class="table">
+                            <thead>
+                                <tr>
+                                    <th>Email</th>
+                                    <th>Nombre de procuration</th>
+                                    <th>Donner procuration</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tableBody">
+                                <!-- Les lignes ajoutées seront affichées ici -->
+                            </tbody>
+                        </table>
                     </div>
                 </div>
-            </form>
-            <!-- bouton pour ajouter une nouvelle ligne dans le tableau de votants -->
-            <div class="row ">
-                <div class="col-md-12 text-center">
-                    <button type="button" class="btn btn-primary" onclick="addRow()">Ajouter une ligne</button>
+                <div class="mb-3 py-2">
+                    <button type="submit" class="btn btn-primary  col-md-2 offset-md-4" id="submit" name="submit">Envoyer</button>
                 </div>
-            </div>  
+
+            </form> 
         </div>
     </div>
 </div>
 
 <script>
-    function addRow() 
-    {
-        var table = document.querySelector("#votantForm table");
-        if (!table) {
-            console.error('Tableau dans le formulaire avec ID "votantForm" non trouvé');
-            return;
-        }
-        var rowCount = table.rows.length;
 
-        // Génération d'ID uniques pour chaque nouvelle ligne
-        var mailId = "mail" + rowCount;
-        var nbProcurationId = "nbProcuration" + rowCount;
-        var donnerProcurationId = "donnerProcuration" + rowCount;
+    //declartion tableau
+    let votants = {};
+    let rowId = 0;
 
-        if (rowCount > 0 && (table.rows[rowCount - 1].cells[0].children[0].value == "" || table.rows[rowCount - 1].cells[1].children[0].value == "")) {
-            document.getElementById("error").innerHTML = "Veuillez remplir la ligne avant d'en ajouter une autre";
-        } else {
-            document.getElementById("error").innerHTML = ""; // Effacer le message d'erreur
-            var row = table.insertRow(rowCount);
-            var cell1 = row.insertCell(0);
-            var cell2 = row.insertCell(1);
-            var cell3 = row.insertCell(2);
-            cell1.innerHTML = "<input type='text' class='form-control' id='" + mailId + "' name='mail[]' required>";
-            cell2.innerHTML = "<input type='number' class='form-control' id='" + nbProcurationId + "' name='nbProcuration[]' value='0' max='2'>";
-            cell3.innerHTML = "<input type='checkbox' class='form-check-input' id='" + donnerProcurationId + "' name='donnerProcuration[]'>";
-        }
-    }
+    // Récupérer les références des éléments du formulaire
+    const checkbox = document.getElementById('donnerProcuration');
+    const inputField = document.getElementById('nombreProcuration');
 
-
-    function sendData() 
-    {
-        var table = document.querySelector("#votantForm table");
-        if (!table) {
-            console.error('Tableau dans le formulaire avec ID "votantForm" non trouvé');
-            return;
-        }
-
-        var rowCount = table.rows.length;
-        var data = [];
-        var errors = false;
-
-        for (var i = 0; i < rowCount; i++) {
-            var mailInput = document.querySelectorAll("input[name='mail[]']")[i];
-            var nbProcurationInput = document.querySelectorAll("input[name='nbProcuration[]']")[i];
-            var donnerProcurationInput = document.querySelectorAll("input[name='donnerProcuration[]']")[i];
-
-            
-            console.log("Mail Input:", mailInput);
-            console.log("NbProcuration Input:", nbProcurationInput);
-            console.log("Donner Procuration Input:", donnerProcurationInput);
-
-
-            var mail = mailInput.value;
-            var nbProcuration = nbProcurationInput.value;
-            var donnerProcuration = donnerProcurationInput.checked;
-
-            if (mail.trim() === "") 
-            {
-                document.getElementById("error").innerHTML = "Le champ mail ne peut pas être vide pour la ligne " + (i + 1);
-                errors = true;
-                break;
-            }
-            if (nbProcuration < 0) 
-            {
-                document.getElementById("error").innerHTML = "Le nombre de procuration doit être positif pour la ligne " + (i + 1);
-                errors = true;
-                break;
-            } 
-            else if (nbProcuration > 2) 
-            {
-                document.getElementById("error").innerHTML = "Le nombre de procuration ne peut pas être supérieur à 2 pour la ligne " + (i + 1);
-                errors = true;
-                break;
-            }
-            if (nbProcuration > 0 && donnerProcuration) 
-            {
-                document.getElementById("error").innerHTML = "Le nombre de procuration doit être 0 si vous donnez une procuration pour la ligne " + (i + 1);
-                errors = true;
-                break;
-            }
-
-            if (!errors) 
-            {
-                data.push({ mail: mail, nbProcuration: nbProcuration, donnerProcuration: donnerProcuration ? 1 : 0 });
-            } else 
-            {
-                // Stop the loop if there are errors
-                break;
-            }
-        }
-
-        if (!errors) 
+    // Ajouter un écouteur d'événements sur le changement d'état du checkbox
+    checkbox.addEventListener('change', function() {
+        // Vérifier si le checkbox est coché
+        if (checkbox.checked) 
         {
-            // Convertir l'objet data en chaîne JSON
-            var jsonData = JSON.stringify(data);
-
-            // Envoyer les données via AJAX
-            $.ajax({
-                type: "POST",
-                dataType: "json",
-                url: "http://localhost/EchoSovereign/controller/votant.controller.php",
-                data: { votantData: jsonData },
-            }).done(function (reponse) 
-            {
-                if (reponse.success) 
-                {
-                    alert(reponse.message);
-                    console.log(reponse.message);
-                    location.reload();
-                }
-                else 
-                {
-                    alert(reponse.message);
-                    console.log(reponse.message);
-                    location.reload();
-                }
-            }).fail(function (error) 
-            {
-                alert("Une erreur s'est produite lors de la requête AJAX.");
-                console.log(error);
-                
-            });
+            // Désactiver le champ de saisie
+            inputField.disabled = true;
+        } 
+        else 
+        {
+            // Activer le champ de saisie
+            inputField.disabled = false;
         }
+    });
+
+    function addRow(event) 
+    {
+        event.preventDefault();
+        rowId++;
+        
+        // Récupérer les valeurs des champs
+        let email = document.getElementById('email').value;
+        let nombreProcuration = document.getElementById('nombreProcuration').value;
+        let donnerProcuration = document.getElementById('donnerProcuration').checked;
+        
+        // Vérifier si les champs ne sont pas vides
+        if (email === '' || (nombreProcuration === '' && !donnerProcuration)) 
+        {
+            document.getElementById('errorAjout').innerHTML = 'Veuillez remplir tous les champs';
+            return;
+        }
+        if (donnerProcuration) 
+        {
+            nombreProcuration = 0;
+        }
+        
+        // Réinitialiser le message d'erreur
+        document.getElementById('errorAjout').innerHTML = '';
+
+        //on vérifie si le mail existe dans les lignes précédentes
+        for (let key in votants) 
+        {
+            if (votants[key].email === email) 
+            {
+                document.getElementById('errorAjout').innerHTML = 'Le mail existe déjà';
+                return;
+            }
+        }
+        
+        // Créer une nouvelle ligne dans le tableau
+        let newRow = '<tr><td>' + email + '</td><td>' + nombreProcuration +'</td><td>'+ donnerProcuration +'</td></tr>';
+        
+        // Ajouter la nouvelle ligne au tableau
+        document.getElementById('tableBody').innerHTML += newRow;
+
+        // Ajouter les valeurs dans le tableau votants avec pour clé rowId
+        votants[rowId] = {email: email, nombreProcuration: nombreProcuration};
+        
+        // Réinitialiser les champs
+        document.getElementById('email').value = '';
+        document.getElementById('nombreProcuration').value = '';
+        console.log(votants);
+
     }
 
 </script>
