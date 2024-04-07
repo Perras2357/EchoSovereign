@@ -117,15 +117,21 @@
             //******************************************************************************************* */
             foreach ($votants as $vt) 
             {
+                $vt['nombreProcuration'] = intval($vt['nombreProcuration']) +1;
+
+
                 $motdepasse = generateRandomPassword();
+
+                $info_exist = file_get_contents('../DATA/DATA_'.$_SESSION['login'].'/info.json');
+                $data_info = json_decode($info_exist, true);
 
                 $authentification_votant[] = array("email" => $vt['email'], "motdepasse" => $motdepasse, "etat_vote"=>"non", "procuration"=>$vt['nombreProcuration']);
 
                 //on crée un tableau avec le mail, le mot de passe et le lien contenant le scrutin et le mot de passe
                 $message = "href='http://localhost/scrutin/scrutin.php?scrutin=".$_SESSION['titre']."&".$_SESSION['titre'];
-                $tableauInfo[$vt['email']] = array("email" => $vt['email'], "motdepasse" => $motdepasse, "lien" => $message);
+                $data_info[$vt['email']] = array("email" => $vt['email'], "motdepasse" => $motdepasse, "lien" => $message);
                 //on crée le fichier json
-                $jsonInfo = json_encode($tableauInfo, JSON_PRETTY_PRINT);
+                $jsonInfo = json_encode($data_info, JSON_PRETTY_PRINT);
                 //on écrit le json dans le fichier
                 file_put_contents('../DATA/DATA_'.$_SESSION['login'].'/info.json', $jsonInfo);
 
@@ -148,6 +154,8 @@
             //******************************************************************************************* */
             foreach ($votants as $vt) 
             {
+                $vt['nombreProcuration'] = intval($vt['nombreProcuration']) +1;
+
                 $motdepasse = generateRandomPassword();
 
                 //on crée un tableau avec le mail, le mot de passe et le lien contenant le scrutin et le mot de passe

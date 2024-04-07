@@ -43,7 +43,8 @@ if (isset($_SESSION['login']))
 
                         if (isset($scrutinItem['options']) && is_array($scrutinItem['options'])) 
                         {
-                            foreach ($scrutinItem['options'] as $option) {
+                            foreach ($scrutinItem['options'] as $option) 
+                            {
                                 $options[] = $option;
                             }
                         }
@@ -59,13 +60,32 @@ if (isset($_SESSION['login']))
                                 {
                                     $nbr_votes++;
                                 }
+                                if(isset($votant['procuration']) && $votant['email'] == $_SESSION['login'])
+                                {
+                                    $email = $votant['email'];
+                                    $procuration = $votant['procuration'];
+                                    $etat_vote = $votant['etat_vote'];
+
+                                    if($votant['etat_vote'] == 'oui')
+                                    {
+                                        $etat_vote = 'non';
+                                    }
+                                    else
+                                    {
+                                        $etat_vote = 'oui';
+                                    }
+                                }    
                             }
                         }
-                        if ($titre == $_SESSION['titre']) 
+                        if ($titre == $_SESSION['titre'] && $email== $_SESSION['login']) 
                         {
                             if ($fin <= date('d-m-Y H:i:s')) //si la date de fin est inférieure à la date actuelle
                             {
-                                $etat = 'fermé';
+                                $etat = 'fermer';
+                            }
+                            if(empty($description))
+                            {
+                                $description = 'Pas de description';
                             }
                             // Stocke les données du scrutin dans un tableau
                             $scrutins[] = array(
@@ -77,7 +97,8 @@ if (isset($_SESSION['login']))
                                 'voteSimple' => $voteSimple,
                                 'options' => $options,
                                 'acces_vote' => $etat,
-                                'je_peux_voter' => $votant['etat_vote'],
+                                'procuration' => $procuration,
+                                'je_peux_voter' => $etat_vote,
                                 'nbr_votants' => $nbr_votants,
                                 'nbr_votes' => $nbr_votes
                             );

@@ -80,6 +80,7 @@
                     //on charge le fichier json du scrutin
                     $jsonString = file_get_contents('../DATA/DATA_'.$_SESSION['login'].'/scrutin.json');
                     $existing_data = json_decode($jsonString, true);
+
                     //on vérifie si le titre existe dans le fichier json du scrutin
                     if (array_key_exists($titre, $existing_data)) 
                     {

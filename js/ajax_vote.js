@@ -1,5 +1,6 @@
 //variable qui determine si je peux voter
 var activeVote = "oui"; 
+etat_vote = "fermer";
 question;
 reponses = [];
  //appel ajax pour récuperer les informations des scrutins et les afficher dans le tvariableau de liste des scrutins 
@@ -17,11 +18,11 @@ reponses = [];
             $('#liste_scrutin table tbody').append('<tr><td>'+scrutin.titre+
                 '</td><td>'+scrutin.organisation+'</td><td>'+scrutin.description+
                 '</td><td>'+scrutin.debut+'</td><td>'+scrutin.fin+'</td><td>'+scrutin.acces_vote+
-                '</td><td>'+scrutin.je_peux_voter+'</td><td>'+scrutin.nbr_votants+'</td><td>'+scrutin.nbr_votes+'</td></tr>');
+                '</td><td>'+scrutin.procuration+'</td><td>'+scrutin.je_peux_voter+'</td><td>'+scrutin.nbr_votants+'</td><td>'+scrutin.nbr_votes+'</td></tr>');
                 activeVote = scrutin.je_peux_voter;
+                etat_vote = scrutin.acces_vote;
                 question = scrutin.voteSimple;
                 reponses = scrutin.options;
-                console.log(scrutin.options);
         });
         //je récupère l'élément question dans le formulaire de vote
         var questionElement = document.getElementById('question');
@@ -58,6 +59,57 @@ reponses = [];
     alert( "error" );
     console.log(error);
 });
+
+function envoieVote()
+{
+    //je vérifie si le vote est actif
+    if(etat_vote != "fermer")
+    {
+        //je récupère le choix de l'utilisateur
+        var choix = document.getElementById('choix').value;
+        
+        //je vérifie si l'utilisateur a bien choisi une réponse
+        if(choix == '')
+        {
+            //j'affiche un message d'erreur dans le span qui a l'id erreurVote
+            document.getElementById('erreurVote').textContent = 'Veuillez choisir une réponse';
+        }
+        else
+        {
+            //je fais un appel ajax pour envoyer le vote à la base de données
+            $.ajax({
+                type: "POST",
+                dataType: 'json',
+                url: "http://localhost/EchoSovereign/controller/traitement_voix.php",
+                data: {voix:1, vote: choix}
+            }).done(function(response)
+            {
+                if(response.success)
+                {
+                   console.log(response.message);
+                   alert(response.message);
+                }
+                else
+                {
+                    console.log(response.message);
+                    alert(response.message);
+                }
+            }).fail(function(error)
+            {
+                alert( "error" );
+                console.log(error);
+            }
+            );
+        }
+    }
+    else
+    {
+        //je désactive le formulaire le button submit
+        document.getElementById('submit').disabled = true;
+
+    }
+
+}
 
 //je coonstruis le formulaire de vote en fonction des questions et des réponses dans le formulaire de vote qui a l'id form_vote
 // function construireFormulaireVote()

@@ -1,0 +1,30 @@
+{
+    "test": {
+        "votant": [
+            {
+                "login": "proteus7532@gmail.com",
+                "date": "2024-04-07 02:35:40",
+                "voix": "vous"
+            },
+            {
+                "login": "proteus7532@gmail.com",
+                "date": "2024-04-07 02:35:57",
+                "voix": "moi"
+            }
+        ]
+    },
+    "nouveau2": {
+        "votant": [
+            {
+                "login": "proteus7532@gmail.com",
+                "date": "2024-04-07 02:37:47",
+                "voix": "moi"
+            },
+            {
+                "login": "proteus7532@gmail.com",
+                "date": "2024-04-07 02:38:21",
+                "voix": "moi"
+            }
+        ]
+    }
+}

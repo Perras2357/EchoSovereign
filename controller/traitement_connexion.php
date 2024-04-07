@@ -15,6 +15,8 @@
         }
 
         extract($_POST);
+        //on crée une session pour l'utilisateur
+        $_SESSION['login'] = $ajax_login;
         
         // on vérifie si le fichier organisateurs.json existe dans le repertoire DATA
         if (file_exists('../DATA/organisateurs.json') and filesize('../DATA/organisateurs.json') > 0)
@@ -29,11 +31,8 @@
                 //on vérifie si le mot de passe correspond au login
                 if ($data[$ajax_login]['password'] == $ajax_password) 
                 {
-                    //on crée une session pour l'utilisateur
-                    $_SESSION['login'] = $ajax_login;
                     $response['message'] = 'Bienvenue ';
                     $response['success'] = true;
-
                 }
                 else
                 {

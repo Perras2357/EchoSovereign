@@ -373,10 +373,9 @@
                         }
                         else if(response.message == 'Ce scrutin existe déjà.')
                         {
-                            // on masque le formulaire de scrutin
-                            $('#collapseForm').collapse('hide');
-                            // on affiche le formulaire de votants
-                            document.getElementById('FormVotant').style.display = 'block';
+                            
+                            document.getElementById('errorTitre').innerHTML = response.message;
+
                         }
 
                     }

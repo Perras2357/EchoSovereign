@@ -298,7 +298,7 @@
             "moi",
             "TOI"
         ],
-        "etat": "fermer",
+        "etat": "ouvert",
         "votants": [
             {
                 "email": "proteus7532@gmail.com",
@@ -476,6 +476,133 @@
                 "motdepasse": "ielkfQLvj",
                 "etat_vote": "non",
                 "procuration": "0"
+            }
+        ]
+    },
+    "lkfkldffklrer": {
+        "organisation": "Popotinvdgg",
+        "description": "fdfs",
+        "debut": "06-04-2024 14:26:00",
+        "fin": "07-04-2024 14:26:00",
+        "voteSimple": "Vote du presidenteffe",
+        "options": [
+            "moi1",
+            "moi2"
+        ],
+        "etat": "ouvert",
+        "votants": [
+            {
+                "email": "moise.ndam-perras@universite-paris-saclay.fr",
+                "motdepasse": "TinWPC07w",
+                "etat_vote": "non",
+                "procuration": "0"
+            },
+            {
+                "email": "moiseperras2357@gmail.com",
+                "motdepasse": "ltjiVSibY",
+                "etat_vote": "non",
+                "procuration": "1"
+            },
+            {
+                "email": "proteus7532@gmail.com",
+                "motdepasse": "QXgo8hRGT",
+                "etat_vote": "non",
+                "procuration": "0"
+            }
+        ]
+    },
+    "vide": {
+        "organisation": "ab",
+        "description": "",
+        "debut": "19-04-2024 18:50:00",
+        "fin": "21-04-2024 18:50:00",
+        "voteSimple": "president",
+        "options": [
+            "moi",
+            "moi34"
+        ],
+        "etat": "ouvert",
+        "votants": [
+            {
+                "email": "moise.ndam-perras@universite-paris-saclay.fr",
+                "motdepasse": "5ThEdTEA5",
+                "etat_vote": "non",
+                "procuration": "1"
+            },
+            {
+                "email": "moiseperras2357@gmail.com",
+                "motdepasse": "s5RuyENTa",
+                "etat_vote": "non",
+                "procuration": "0"
+            }
+        ]
+    },
+    "test": {
+        "organisation": "Paris-saclay",
+        "description": "",
+        "debut": "07-04-2024 08:05:00",
+        "fin": "13-04-2024 08:05:00",
+        "voteSimple": ",nvd,nd,ndv,nvn,vd",
+        "options": [
+            "moi",
+            "vous"
+        ],
+        "etat": "ouvert",
+        "votants": [
+            {
+                "email": "moiseperras2357@gmail.com",
+                "motdepasse": "JmezNu0zg",
+                "etat_vote": "non",
+                "procuration": 0
+            },
+            {
+                "email": "proteus7532@gmail.com",
+                "motdepasse": "ln19dMKlr",
+                "etat_vote": "non",
+                "procuration": 1
+            },
+            {
+                "email": "moiseperras@gmail.com",
+                "motdepasse": "JmezNu1ag",
+                "etat_vote": "oui",
+                "procuration": 0
+            }
+        ]
+    },
+    "Delegue": {
+        "organisation": "Paris-saclay",
+        "description": "",
+        "debut": "07-04-2024 09:14:00",
+        "fin": "14-04-2024 09:14:00",
+        "voteSimple": "Vote du president",
+        "options": [
+            "moi"
+        ],
+        "etat": "ouvert",
+        "votants": []
+    },
+    "nouveau2": {
+        "organisation": "Paris-saclay",
+        "description": "",
+        "debut": "07-04-2024 09:42:00",
+        "fin": "14-04-2024 09:42:00",
+        "voteSimple": ",nvd,nd,ndv,nvn,vd",
+        "options": [
+            "moi"
+        ],
+        "etat": "ouvert",
+        "votants": [
+            {
+                "email": "moise.ndam-perras@universite-paris-saclay.fr",
+                "motdepasse": "qWdWpMHzc",
+                "etat_vote": "non",
+                "procuration": 0
+            },
+            {
+                "email": "proteus7532@gmail.com",
+                "motdepasse": "qWdQpMHzc",
+                "etat_vote": "oui",
+                "procuration": 0
             }
         ]
     }

@@ -9,10 +9,9 @@
             $_GET[$key] = htmlspecialchars($value);
         }
             extract($_GET);
-            // var_dump($_GET);
-            // var_dump($scrutin);
-                $_SESSION['scrutin'] = $scrutin;
-                $_SESSION['titre'] = $titre;
+
+            $_SESSION['scrutin'] = $scrutin;
+            $_SESSION['titre'] = $titre;
     }
 
 
