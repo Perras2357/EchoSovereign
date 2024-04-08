@@ -3,7 +3,7 @@
 ?>
 
  <!-- ici on affiche tout les scrutins -->
- <div class="container" id="liste_scrutin">
+    <div class="container" id="liste_scrutin">
         <div class="row">
             <div class="col-md-12">
                 <h3 class="text-center">Liste des scrutins</h3>
@@ -30,7 +30,7 @@
             </div>
         </div>
         <div class="row" id='vote'>
-            <form class="col-md-8 offset-md-1" id="form_vote" method="POST" onsubmit="return envoieVote()">
+            <form class="col-md-8 offset-md-1" id="form_vote" method="POST" onsubmit="return envoieVote(event)">
                 <div class="col-md-2">
                     <h3 id="question">  </h3>                
                 </div>
@@ -43,18 +43,65 @@
                 </div>
                 <div class="col-md-2">
                     <button type="submit" class="btn btn-primary" id="submit">Voter</button>
+                    <span style="color: green;" id="erreurVote" class="error"></span><br>
                 </div>
             </form>
         </div>
             
+        <!-- div pour afficher les résultat du vote -->
+        <div class="row" id="resultat">
+            <div class="col-md-12">
+                <h3 class="text-center">Resultat du vote</h3>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Nombre de votants</th>
+                            <th scope="col">Nombre de vote</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- ici on affiche les résultats du vote -->
+                    </tbody>
+                
+            </div>
         </div>
+
     </div>
     <script src="../js/ajax_vote.js"></script>
 
 
 
 <script>
-    //je coonstruis le formulaire de vote en fonction des questions et des réponses dans le formulaire de vote qui a l'id form_vot
+    reponses = [];
+    function afficheResultat()
+    {
+        //appel ajax pour construire le tableau de resultat des résultats
+        $.ajax({
+            url: '../controller/calcule_resultat.php',
+            type: 'POST',
+            data: {action: 'resultat'},
+            dataType : 'json'
+        }).done(function(response)
+                {
+                    if(response.success)
+                    {
+                        //on ajoute les éléments dans thead en fonction des réponses qui se trouve dans reponses
+                        
+
+
+
+                    }
+                    else
+                    {
+                        alert(response.message);
+                    }
+                }).fail(function(error)
+                {
+                    alert('Erreur de chargement des résultats');
+                });
+
+
+    }
 
         
         

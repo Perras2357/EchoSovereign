@@ -77,7 +77,7 @@ if (isset($_SESSION['login']))
                                 }    
                             }
                         }
-                        if ($titre == $_SESSION['titre'] && $email== $_SESSION['login']) 
+                        if ($titre == $_SESSION['titre'] && isset($email) && $email== $_SESSION['login']) 
                         {
                             if ($fin <= date('d-m-Y H:i:s')) //si la date de fin est inférieure à la date actuelle
                             {
