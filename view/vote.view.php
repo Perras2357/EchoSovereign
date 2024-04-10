@@ -1,6 +1,8 @@
 <?php
     require("head.php");
 ?>
+    <script src="../Encrypte/node_modules/jsencrypt/bin/jsencrypt.min.js"></script>
+
 
  <!-- ici on affiche tout les scrutins -->
     <div class="container" id="liste_scrutin">

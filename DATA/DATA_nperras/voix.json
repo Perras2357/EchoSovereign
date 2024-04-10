@@ -1,0 +1,25 @@
+{
+    "Premier": {
+        "votant": [
+            {
+                "login": "moise.ndam-perras@universite-paris-saclay.fr",
+                "date": "2024-04-10 19:57:14",
+                "voix": "mUL5s8aHR9JeL+zpQT8JwC0xT+qJups4kc3DKAL74HsKHVqucBJewSoTP1KVU1ojKjQWaiiudsinzfpgvhpM2mXvDz7JgJ\/aW59BwUYHs3gfGcqqXEPCM\/A64nf0uW8k6O79oKnqTUF2nN2ZNFphgJ2c+VpkEWQ8J25bvgSSdRQ="
+            },
+            {
+                "login": "moise.ndam-perras@universite-paris-saclay.fr",
+                "date": "2024-04-10 19:57:17",
+                "voix": "nD1PP9wDHU8Ca7Bw1qS4TOklqEDSIoLblLEKJDJcihqAQRk0+zRnbEV3n1IVIehWPp0x5kPZnKVVLE7bNlA74j+udfhcKb+qqifNtg54Fd+yf7kMjsTmsG9ZPjl1nb54k8kZ7NRT0kYFnh2lRM2Iqy07x\/9cfcWa2Lf4I+XQiwo="
+            },
+            {
+                "login": "moise.ndam-perras@universite-paris-saclay.fr",
+                "date": "2024-04-10 19:57:19",
+                "voix": "aOhNF+qJ7YgJkAX39VTxFvhi0MAc54+n4SR6tiw\/t8jl8OwzFlKVTpB2sydxfs5FTaj8wpuB3mj1qtZj\/fpeQ7C7fInY1\/dK8S9b8rg\/Rj1y+iIB5dsairI0XsDuBEKKMme92vVr\/b8nVa4eQzNMyJEF6w3fHoZvBWSX8gQr2Qw="
+            }
+        ],
+        "comptage": {
+            "moi": 2,
+            "toi": 1
+        }
+    }
+}

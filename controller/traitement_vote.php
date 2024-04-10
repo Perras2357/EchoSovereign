@@ -49,7 +49,6 @@ if (isset($_SESSION['login']) && isset($_SESSION['scrutin']) && isset($_SESSION[
                             }
                         }
 
-
                         // Compte le nombre de votes
                         $nbr_votes = 0;
                         if (isset($scrutinItem['votants'])) 
@@ -77,7 +76,7 @@ if (isset($_SESSION['login']) && isset($_SESSION['scrutin']) && isset($_SESSION[
                                 }    
                             }
                         }
-                        if ($titre == $_SESSION['titre'] && isset($email) && $email== $_SESSION['login']) 
+                        if ($titre == $_SESSION['titre'] && $email == $_SESSION['login']) 
                         {
                             if ($fin <= date('d-m-Y H:i:s')) //si la date de fin est inférieure à la date actuelle
                             {
@@ -134,7 +133,8 @@ if (isset($_SESSION['login']) && isset($_SESSION['scrutin']) && isset($_SESSION[
         $response['success'] = false;
     }
 } 
-else {
+else 
+{
     $response['message'] = 'Vous devez vous connecter pour accéder à cette page.';
     $response['success'] = false;
 }

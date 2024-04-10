@@ -100,11 +100,5 @@ else
     $response['message'] = 'Erreur : utilisateur non connecté.';
     $response['success'] = false;
 }
-// Définit les en-têtes CORS
-// Définit l'en-tête CORS pour autoriser les ressources provenant d'un réseau privé
-header("Access-Control-Allow-Private-Network: true");
-header("Access-Control-Allow-Origin: *"); // Autorise les requêtes depuis n'importe quelle origine
-header("Content-Type: application/json"); // Définit le type de contenu comme JSON
-// Convertit la réponse en JSON et l'envoie
 echo json_encode($response);
 ?>

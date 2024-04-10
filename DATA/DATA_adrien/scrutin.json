@@ -1,0 +1,25 @@
+{
+    "ALTERNANCE": {
+        "organisation": "PARIS SACLAY",
+        "description": "",
+        "debut": "10-04-2024 20:53:00",
+        "fin": "30-04-2024 20:53:00",
+        "voteSimple": "ELECTION CHEF DE FORMATION",
+        "options": [
+            "MBIANGA",
+            "BLONDEL",
+            "FEKI",
+            "PAULIN",
+            "ROSAZ"
+        ],
+        "etat": "fermer",
+        "votants": [
+            {
+                "email": "azanguefomatgide@gmail.com",
+                "motdepasse": "CzO4a3E7G",
+                "etat_vote": "oui",
+                "procuration": 0
+            }
+        ]
+    }
+}

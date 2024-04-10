@@ -22,5 +22,17 @@
     "fatimata": {
         "login": "fatimata",
         "password": "12345"
+    },
+    "nperras": {
+        "login": "nperras",
+        "password": "$2y$10$5ziBnzpx4rtDyRmH8Px.9.\/4NY\/0iryIomdqdIZswcx3cwX5H.kdy"
+    },
+    "proteus7532@gmail.com": {
+        "login": "proteus7532@gmail.com",
+        "password": "$2y$10$vPrqqsI0jlSZAhBPTWNJsuBkWdQEDEd0PPoyedLwm7czwyBRcL03q"
+    },
+    "adrien": {
+        "login": "adrien",
+        "password": "$2y$10$Mz1pbNHwE7cdEPPmST.mGePIwK7k8bIOVoL4wY\/yb4F8Ev8I3idme"
     }
 }

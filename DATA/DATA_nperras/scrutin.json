@@ -1,0 +1,53 @@
+{
+    "Premier": {
+        "organisation": "new",
+        "description": "",
+        "debut": "11-04-2024 17:45:00",
+        "fin": "14-04-2024 17:45:00",
+        "voteSimple": "Vote du president",
+        "options": [
+            "moi",
+            "toi"
+        ],
+        "etat": "ouvert",
+        "votants": [
+            {
+                "email": "moise.ndam-perras@universite-paris-saclay.fr",
+                "motdepasse": "uTkQfKZsn",
+                "etat_vote": "oui",
+                "procuration": 0
+            }
+        ]
+    },
+    "Premier667": {
+        "organisation": "institut",
+        "description": "",
+        "debut": "11-04-2024 20:15:00",
+        "fin": "20-04-2024 20:15:00",
+        "voteSimple": ",nvd,nd,ndv,nvn,vd",
+        "options": [
+            "moi"
+        ],
+        "etat": "ouvert",
+        "votants": []
+    },
+    "deucoi": {
+        "organisation": "Paris-saclay",
+        "description": "",
+        "debut": "11-04-2024 20:17:00",
+        "fin": "13-04-2024 20:17:00",
+        "voteSimple": "Vote du president",
+        "options": [
+            "moi"
+        ],
+        "etat": "ouvert",
+        "votants": [
+            {
+                "email": "moise.ndam-perras@universite-paris-saclay.fr",
+                "motdepasse": "uMqDqWtNS",
+                "etat_vote": "non",
+                "procuration": 1
+            }
+        ]
+    }
+}

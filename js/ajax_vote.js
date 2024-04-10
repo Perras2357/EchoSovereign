@@ -14,7 +14,7 @@ function afficheResultat()
     $.ajax({
         type: "POST",
         dataType: 'json',
-        url: "http://localhost/EchoSovereign/controller/traitement_resultat.php",
+        url: "traitement_resultat.php",
         data: {resultat:1}
     }).done(function(response)
     {
@@ -57,7 +57,7 @@ function afficheScrutin()
     $.ajax({
         type: "POST",
         dataType: 'json',
-        url: "http://localhost/EchoSovereign/controller/traitement_vote.php",
+        url: "traitement_vote.php",
         data: {organisateur: 1}
     }).done(function(response) 
     {
@@ -127,6 +127,7 @@ afficheScrutin();
 //--------------------- Function qui permet de voter -----------------------------------
 function envoieVote(event)
 {
+    var password_encrypte ;
     //j'empêche la page de se recharger
     event.preventDefault();
 
@@ -144,34 +145,28 @@ function envoieVote(event)
         }
         else
         {
-            //je fais un appel ajax pour envoyer le vote à la base de données
+             // Charger la clé publique depuis un fichier
             $.ajax({
-                type: "POST",
-                dataType: 'json',
-                url: "http://localhost/EchoSovereign/controller/traitement_voix.php",
-                data: {voix:1, vote: choix}
-            }).done(function(response)
-            {
-                if(response.success)
+                url: '../Encrypte/public.pem',
+                dataType: 'text',
+                success: function (publicKey) 
                 {
-                   console.log(response.message);
-                }
-                else
+                    // Initialisez JSEncrypt avec la clé publique
+                    var encryptor = new JSEncrypt();
+                    encryptor.setPublicKey(publicKey);
+
+                    // Maintenant, vous pouvez utiliser l'encrypteur pour chiffrer les données côté client
+                    choix_encrypt = encryptor.encrypt(choix);
+
+                    // Envoi du formulaire après le chiffrement du mot de passe
+                    envoieVoteCoder(choix_encrypt);
+                },
+                error: function (xhr, status, error) 
                 {
-                    document.getElementById('submit').disabled = true;
-                    console.log(response.message);
-                    document.getElementById('erreurVote').textContent = response.message;
+                    console.error('Erreur lors du chargement de la clé publique :', error);
+                    errors = true;
                 }
-
-                //j'appelle la fonction afficheScrutin
-                afficheScrutin();
-
-            }).fail(function(error)
-            {
-                alert( "error" );
-                console.log(error);
-            }
-            );
+            });
         }
     }
     else
@@ -187,5 +182,38 @@ function envoieVote(event)
 
     }
 
+}
+
+//-----------------fonction envoie vote coder-----------------------------------
+function envoieVoteCoder(choix)
+{
+    //je fais un appel ajax pour envoyer le vote à la base de données
+    $.ajax({
+        type: "POST",
+        dataType: 'json',
+        url: "traitement_voix.php",
+        data: {voix:1, vote: choix}
+    }).done(function(response)
+    {
+        if(response.success)
+        {
+           console.log(response.message);
+        }
+        else
+        {
+            document.getElementById('submit').disabled = true;
+            console.log(response.message);
+            document.getElementById('erreurVote').textContent = response.message;
+        }
+
+        //j'appelle la fonction afficheScrutin
+        afficheScrutin();
+
+    }).fail(function(error)
+    {
+        alert( "error" );
+        console.log(error);
+    }
+    );
 }
 

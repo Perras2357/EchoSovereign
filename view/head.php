@@ -9,32 +9,6 @@
       </title>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>    
-      <script>
-         // Avant le rechargement de la page, enregistrez les messages de la console dans le stockage local
-         window.addEventListener('beforeunload', function(e) {
-            var consoleMessages = [];
-            // Récupérer tous les messages de la console actuels
-            var oldConsoleLog = console.log;
-            console.log = function(message) {
-                consoleMessages.push(message);
-                oldConsoleLog.apply(console, arguments);
-            };
-            // Stocker les messages dans le stockage local
-            localStorage.setItem('consoleMessages', JSON.stringify(consoleMessages));
-        });
-
-        // Après le rechargement de la page, restaurer les messages de la console depuis le stockage local
-        window.addEventListener('load', function() {
-            var storedMessages = JSON.parse(localStorage.getItem('consoleMessages'));
-            if (storedMessages && storedMessages.length > 0) {
-                console.log('--- Restoring console history ---');
-                storedMessages.forEach(function(message) {
-                    console.log(message);
-                });
-                console.log('--- End of restored console history ---');
-            }
-        });
-    </script>
     </head>
     <body>
       <!-- on appel la couleur purple-700 comme background du header -->

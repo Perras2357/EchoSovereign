@@ -3,6 +3,8 @@
     //et signaler une erreur s'il y en a
     require_once("head.php");
 ?>
+    <script src="Encrypte/node_modules/jsencrypt/bin/jsencrypt.min.js"></script>
+
 
 <!-- formulaire de connexion qui demande un login un password et un bouton pour se connecter -->
 <div class="col-lg-8 col-md-8 offset-lg-2 offset-md-2 shadow-none p-3 mb-5 bg-light rounded p-5" >

@@ -15,7 +15,7 @@ let resultats = [];
         $.ajax({
             type: "POST",
             dataType: 'json',
-            url: "http://localhost/EchoSovereign/controller/liste_scrutin.php",
+            url: "liste_scrutin.php",
             data: {organisateur: 1}
         }).done(function(response) 
         {
@@ -68,7 +68,7 @@ function afficheResultat()
         $.ajax({
             type: "POST",
             dataType: 'json',
-            url: "http://localhost/EchoSovereign/controller/traitement_resultat_organisateur.php",
+            url: "traitement_resultat_organisateur.php",
             data: {resultat:1, titre:resultat.titre}
         }).done(function(response)
         {
@@ -181,7 +181,7 @@ function afficheResultat()
                 $.ajax({
                     type: "POST",
                     dataType: 'json',
-                    url: "http://localhost/EchoSovereign/controller/gestion_votant.php",
+                    url: "gestion_votant.php",
                     data: {votants:votants}
                 }).done(function(response) 
                 {
@@ -289,8 +289,6 @@ function afficheResultat()
             // Convertir la différence en minutes
             let diffDebutFinMin = diffDebutFinMs / (1000 * 60);
             let diffDebutActuelleMin = diffDebutActuelleMs / (1000 * 60);
-            console.log(diffDebutActuelleMs);
-            console.log(diffDebutActuelleMin);
             errors = false; // Initialisez la variable d'erreur à false
 
             // Validation du titre
@@ -331,7 +329,7 @@ function afficheResultat()
                 $.ajax({
                     type: "POST",
                     dataType: 'json',
-                    url: "http://localhost/EchoSovereign/controller/traitement_organisation_scrutin.php",
+                    url: "traitement_organisation_scrutin.php",
                     data: {titre:titre, organisation:organisation, 
                         description:description, fin:dateFin, debut:dateDebut, 
                         voteSimple:voteSimple, reponses:reponses}

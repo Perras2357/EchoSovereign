@@ -1,6 +1,8 @@
 <?php
     require("head.php");
 ?>
+    <script src="../Encrypte/node_modules/jsencrypt/bin/jsencrypt.min.js"></script>
+
 
 <!-- formulaire d'inscription qui demande un login un password et un bouton pour s'inscrire -->
 <div class="col-lg-8 col-md-8 offset-lg-2 offset-md-2 shadow-none p-3 mb-5 bg-light rounded p-5" >
@@ -40,6 +42,7 @@
         <!--bouton pour s'inscrire-->
         <div class="mb-3 py-2">
             <button type="submit" class="btn btn-primary  col-md-2 offset-md-5" id="submit" name="submit">Submit</button>
+            <span id="errorSubmit" class="error"></span><br>
         </div>
     </form>
     <div class="row">
