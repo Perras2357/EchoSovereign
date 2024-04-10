@@ -1,7 +1,17 @@
-        
-        document.getElementById('FormVotant').style.display = 'none';
+let votants = {};
+let rowId = 0;
+let reponses = [];
+let resultats = [];
 
-        //appel ajax pour récuperer les informations des scrutins et les afficher dans le tvariableau de liste des scrutins 
+
+//----------------------------------appel ajax pour récuperer les informations des scrutins et les afficher dans le tvariableau de liste des scrutins----------------------------------
+    function listeScrutin()
+    {
+        document.getElementById('liste_scrutin').style.display = 'block'
+        document.getElementById('formOrganisation').style.display = 'none';
+        document.getElementById('FormVotant').style.display = 'none';
+        document.getElementById('btn_create_vote').style.display ="block";
+        document.getElementById('liste_resultat').style.display = 'none';
         $.ajax({
             type: "POST",
             dataType: 'json',
@@ -17,7 +27,18 @@
                         '</td><td>'+scrutin.organisation+'</td><td>'+scrutin.description+
                         '</td><td>'+scrutin.debut+'</td><td>'+scrutin.fin+'</td><td>'+scrutin.etat+
                         '</td><td>'+scrutin.nbr_votants+'</td><td>'+scrutin.nbr_votes+'</td></tr>');
+                        if(scrutin.etat == 'fermer')
+                        {
+                            // Ajoute un nouvel objet dans le tableau resultats pour chaque scrutin fermé
+                            resultats.push({
+                                'titre': scrutin.titre,
+                                'nbr_votes': scrutin.nbr_votes,
+                                'nbr_votants': scrutin.nbr_votants
+                            });
+                        }
+
                 });
+                afficheResultat();
             }
             else
             {
@@ -30,16 +51,59 @@
             alert( "error" );
             console.log(error);
         });
+    }
+    //appel de la fonction listeScrutin
+    listeScrutin();
 
-        //-----------------------------------------------------------------------------------------
-        //-----------------------------------------------------------------------------------------
+//----------- fonction qui affiche le resultat d'un scrutin -------------------
+function afficheResultat()
+{
+    //on parcourt le tableau de resultat avec un foreach et on fait l'appel ajax pour récuperer les resultats
+    resultats.forEach(resultat => 
+    {
+        document.getElementById('liste_resultat').style.display = 'block';
+        console.log(resultat.titre);
+        //on calcul le taux de participation
+            taux = ((resultat.nbr_votes / resultat.nbr_votants) * 100).toFixed(2);
+        $.ajax({
+            type: "POST",
+            dataType: 'json',
+            url: "http://localhost/EchoSovereign/controller/traitement_resultat_organisateur.php",
+            data: {resultat:1, titre:resultat.titre}
+        }).done(function(response)
+        {
+            if(response.success)
+            {
+                //afficher les resultats du tableau de resultats dans la div liste_resultat
+                document.getElementById('liste_resultat').style.display = 'block';
+                
+                Object.entries(response.resultats).forEach(([key, value]) => {
+                    $('#liste_resultat #table_resultat #tbody_resultat').append('</tr><tr><td>'+resultat.titre+'</td><td>'+key+'</td><td>'+value+'</td><td class="text-info">'+((value/resultat.nbr_votes)*100).toFixed(2)+'%</td><td>'+taux+'%</td></tr>');
+                });
+                
+                console.log(response.resultats);
 
-        //fonction d'ajout de votants
+            }
+            else
+            {
+                //on cache le tableau de liste des scrutins si il n'y a pas de scrutin à afficher 
+                document.getElementById('liste_resultat').style.display = 'block';
+                console.log(response.message);
+            }
+        }).fail(function(error)
+        {
+            alert( "error" );
+            console.log(error);
+        });
+    });
+}
+//----------- on click sur le bouton ajouter scrutin on affiche le formulaire de création de scrutin-------------------
+    document.getElementById("collapseForm").addEventListener("click", function(){
+        document.getElementById("formOrganisation").style.display = "block";
+        document.getElementById("FormVotant").style.display = "none";
+    });
 
-            //declartion tableau
-            let votants = {};
-            let rowId = 0;
-
+//----------------------------- fonction d'ajout de votants ----------------------------------------------------------------
             // Récupérer les références des éléments du formulaire
             const checkbox = document.getElementById('donnerProcuration');
             const inputField = document.getElementById('nombreProcuration');
@@ -58,7 +122,6 @@
                     inputField.disabled = false;
                 }
             });
-
             function addRow(event) 
             {
                 event.preventDefault();
@@ -108,64 +171,9 @@
                 console.log(votants);
 
             }
-
-
-        //-----------------------------------------------------------------------------------------
-        //-----------------------------------------------------------------------------------------
-
-        //fonction permettant de valider les champs du formulaire de votant
+//------------------------------fonction permettant de valider les champs du formulaire de votant-----------------------------------
         function validateFormVotant() 
         {
-            // // Réinitialiser les messages d'erreur
-            // document.getElementById('errorVotant').innerHTML = '';
-
-            // // Récupérer les valeurs de tous les champs du votant 
-            // votant = document.forms['votantForm']['votant'].value;
-            // errors = false; // Initialisez la variable d'erreur à false
-
-            // // Validation du votant
-            // if (votant <1) 
-            // {
-            //     document.getElementById('errorVotant').innerHTML = 'Veuillez entrer des votants.';
-            //     errors = true; // Affectez true à la variable d'erreur
-            // }
-            // if (!errors) 
-            // {
-            //     //en voyer les informations du formulaire à la page de traitement via ajax
-            //     $.ajax({
-            //         type: "POST",
-            //         dataType: 'json',
-            //         url: "http://localhost/EchoSovereign/controller/gestion_votant.php",
-            //         data: {votant:votant}
-            //     }).done(function(response) 
-            //     {
-            //         if(response.success)
-            //         {
-            //             alert('votant créé avec succès');
-            //             console.log(response);
-
-            //         }
-            //         else
-            //         {
-            //             // Réinitialiser les messages d'erreur
-            //             document.getElementById('errorVotant').innerHTML = '';
-            //             console.log(response);
-
-            //             //en fonction de la valeur de response.message afficher le message d'erreur correspondant
-            //             if(response.message == 'Veuillez entrer des votants.')
-            //             {
-            //                 document.getElementById('errorVotant').innerHTML = response.message;
-            //             }
-
-            //         }
-            //     }).fail(function(error) 
-            //     {
-            //         alert( "error" );
-            //         console.log(error);
-            //     });
-
-            // }
-
             //on vérifie si le tableau votants n'est pas vide
             if(Object.keys(votants).length > 0)
             {
@@ -179,9 +187,15 @@
                 {
                     if(response.success)
                     {
-                        alert('votant créé avec succès');
+                        listeScrutin();
+                        //on vide le contenue du formulaire de scrutin et de votants
+                        document.forms['scrutinForm']['titre'].value = '';
+                        document.forms['scrutinForm']['organisation'].value = '';
+                        document.forms['scrutinForm']['description'].value = '';
+                        document.forms['scrutinForm']['fin'].value = '';
+                        document.forms['scrutinForm']['debut'].value = '';
+                        document.forms['scrutinForm']['voteSimple'].value = '';
                         console.log(response);
-
                     }
                     else
                     {
@@ -206,21 +220,9 @@
             {
                 document.getElementById('errorVotant').innerHTML = 'Veuillez entrer des votants.';
             }
-
-
-
             return false;
         }
-
-    //-----------------------------------------------------------------------------------------
-    //-----------------------------------------------------------------------------------------
-
-        //fonction permettant l'ajout de réponses à un scrutin
-
-        // Tvariableau pour stocker les réponses
-        let reponses = [];
-        // Fonction pour ajouter une réponse à la liste
-        // Fonction pour ajouter une réponse à la liste
+//------------------------function addReponseToList --------------------------------------------------
         function addReponseToList(event) 
         {
             event.preventDefault(); // Empêche le rechargement de la page
@@ -246,20 +248,9 @@
             });
             document.getElementById('reponse').value = '';
         }
-
-    //-----------------------------------------------------------------------------------------
-    //-----------------------------------------------------------------------------------------
-
-
-        //fonction permettant de valider les champs du formulaire de scrutin
+//---------------fonction permettant de valider les champs du formulaire de scrutin----------------------------------
         function validateFormScrutin() 
-        {
-
-            //maintenir le collapse ouvert
-            $('#collapseVoteSimple').collapse('show');
-            $('#collapseForm').collapse('hide');
-
-            
+        {   
             // Réinitialiser les messages d'erreur
             document.getElementById('errorTitre').innerHTML = '';
             document.getElementById('errorOrganisation').innerHTML = '';
@@ -284,8 +275,22 @@
 
             // Récupérer la date et l'heure actuelles
             dateActuelle = new Date(); 
-            dateActuelle.setMinutes(dateActuelle.getMinutes() + 5); // Ajouter 5 minutes à la date actuelle
+            dateActuelle.setMinutes(dateActuelle.getMinutes); // Ajouter 5 minutes à la date actuelle
 
+            // Convertir les dates en millisecondes
+            let debutMs = dateDebut.getTime();
+            let finMs = dateFin.getTime();
+            let actuelleMs = dateActuelle.getTime();
+
+            // Calculer la différence en millisecondes
+            let diffDebutFinMs = finMs - debutMs;
+            let diffDebutActuelleMs = debutMs - actuelleMs;
+
+            // Convertir la différence en minutes
+            let diffDebutFinMin = diffDebutFinMs / (1000 * 60);
+            let diffDebutActuelleMin = diffDebutActuelleMs / (1000 * 60);
+            console.log(diffDebutActuelleMs);
+            console.log(diffDebutActuelleMin);
             errors = false; // Initialisez la variable d'erreur à false
 
             // Validation du titre
@@ -307,15 +312,15 @@
                 errors = true; // Affectez true à la variable d'erreur
             }
             //si la date de fin est inférieure à la date de début
-            if (dateFin <= dateDebut) 
+            if (diffDebutFinMin<=0) 
             {
                 document.getElementById('errorFin').innerHTML = 'La date de fin doit être supérieure à la date de début.';
                 errors = true; // Affectez true à la variable d'erreur
             }
             //la date de début doit au moins dépasser la date actuelle de 5 minutes
-            if (dateDebut <= dateActuelle) 
+            if (diffDebutActuelleMin <= 3) 
             {
-                document.getElementById('errorDebut').innerHTML = 'La date de début doit être supérieure à la date actuelle.';
+                document.getElementById('errorDebut').innerHTML = 'La date de début doit être supérieure à la date actuelle de 3 minutes.';
                 //$("#errorDebut").html();
                 errors = true; // Affectez true à la variable d'erreur
             }
@@ -337,11 +342,11 @@
                         // on masque liste_scrutin
                         document.getElementById('liste_scrutin').style.display = 'none';
                         // on masque le formulaire de scrutin
-                        $('#collapseForm').collapse('hide');
+                        document.getElementById('formOrganisation').style.display = 'none';
                         // on affiche le formulaire de votants
                         document.getElementById('FormVotant').style.display = 'block';
-
-                        // Réinitialiser les messages d'erreur
+                        document.getElementById('btn_create_vote').style.display ="none";
+                        document.getElementById('liste_resultat').style.display = 'none';
 
                     }
                     else

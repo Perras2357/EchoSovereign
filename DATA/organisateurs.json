@@ -18,5 +18,9 @@
     "mndam": {
         "login": "mndam",
         "password": "1234"
+    },
+    "fatimata": {
+        "login": "fatimata",
+        "password": "12345"
     }
 }

@@ -32,15 +32,35 @@
             </div>
         </div>
     </div>
+    <!-- div pour afficher les résultat du vote -->
+    <div class="row" id="liste_resultat">
+        <div class="col-md-10 offset-1">
+            <h3 class="text-center">Resultat du vote</h3>
+            <table class="table table-striped" id="table_resultat">
+                <thead>
+                    <tr>
+                        <th scope="col">Question</th>
+                        <th scope="col">Reponse</th>
+                        <th scope="col">Nombre de vote</th>
+                        <th scope="col">Pourcentage</th>
+                        <th scope="col">Taux de participation</th>
+                    </tr>
+                </thead>
+                <tbody id="tbody_resultat">
+                    <!-- ici on affiche les résultats du vote -->
+                </tbody>
+            </table>
+        </div>
+    </div>
 
 
     <div class="container">
 
         <!-- button pour ajouter un vote -->
         <div class="row mb-3">
-            <div class="col-md-3 offset-md-3">
+            <div class="col-md-3 offset-md-3" id="btn_create_vote">
                 <p class="d-inline-flex gap-1">
-                    <button class="btn" type="button" data-bs-toggle="collapse" data-bs-target="#collapseForm" aria-expanded="false" aria-controls="collapse">
+                    <button class="btn" type="button" id="collapseForm">
                         <?= $favicon ; ?>
                         Créer un vote
                     </button>
@@ -49,10 +69,10 @@
             </div>
         </div>
 
-        <div class="col-lg-10 col-md-10 offset-lg-1 offset-md-1 shadow-none p-3 mb-5 bg-light rounded p-5" >
+        <div class="col-lg-10 col-md-10 offset-lg-1 offset-md-1 p-3 mb-5 bg-light rounded p-5" >
             
             <!-- formulaire de création de scrutin -->
-            <form name="scrutinForm" method="post" onsubmit="return validateFormScrutin()" id="collapseForm" class="collapse col-form-label">
+            <form name="scrutinForm" method="post" onsubmit="return validateFormScrutin()" id="formOrganisation">
                 
                 <!-- titre du vote -->
                 <div class="row mb-3">
@@ -98,24 +118,10 @@
                         <span style="color: red;" id="errorFin" class="error"></span><br>
                     </div>
                 </div>
-
-                <!-- Ajouter un vote simple ou un vote pondéré  -->
-                <div class="row mb-3">
-                    <label for="voteSimple" class="col-form-label">Type de vote</label>
-                    <button class="btn" type="button" data-bs-toggle="collapse" data-bs-target="#collapseVoteSimple" aria-expanded="false" aria-controls="collapse">
-                        <?= $favicon ; ?>
-                        Vote simple
-                    </button>
-                    <button class="btn" type="button" data-bs-toggle="collapse" data-bs-target="#collapseVotePondere" aria-expanded="false" aria-controls="collapse">
-                        <?= $favicon ; ?>
-                        Vote pondéré
-                    </button>
-                </div>
-
                 <!-- zone vote simple uniquement un input de type textarea-->
-                <div class="collapse" id="collapseVoteSimple">
+                <div id="collapseVoteSimple">
                     <div class="row mb-3" >
-                        <label for="voteSimple" class="col-form-label">Vote simple</label>
+                        <label for="voteSimple" class="col-form-label">Vote simple : Entrez la raison du vote</label>
                         <div class="col-md-9">
                             <input class="form-control" id="voteSimple" name="voteSimple" rows="3">
                             <span style="color: red;" id="errorVoteSimple" class="error"></span><br>
@@ -142,19 +148,9 @@
                 </div>
             </form>
         </div>
-        <div class="col-lg-10 col-md-10 offset-lg-1 offset-md-1 shadow-none p-3 mb-5 bg-light rounded p-5">
+        <div class="col-lg-10 col-md-10 offset-lg-1 offset-md-1 p-3 mb-5 bg-light rounded p-5">
             <!-- formulaire de création de votants dans un champs de textarea de maximum 30 lignes -->
             <form name="votantForm" method="post" onsubmit="return validateFormVotant()" id="FormVotant">
-                <!-- <div class="row mb-3">
-                    <label for="votant" class="col-form-label">Votants</label>
-                    <div class="col-md-9">
-                        <textarea class="form-control" id="votant" name="votant" rows="12"></textarea>
-                        <span style="color: red;" id="errorVotant" class="error"></span><br>
-                    </div>
-                </div>
-                <div class="mb-3 py-2">
-                    <button type="submit" class="btn btn-primary  col-md-2 offset-md-4" id="submit1" name="submit1">Créer</button>
-                </div> -->
 
                 <div class="row mb-3">
                     <div class="col-md-10" id="addReponse">
@@ -196,7 +192,6 @@
     
     <!-- inclure le fichier js pour la validation du formulaire -->
     <script src="../js/ajax_organisation_scrutin.js"></script>
-  
 
 
 

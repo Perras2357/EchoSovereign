@@ -2,14 +2,15 @@
     // Start the session
     session_start();
 
-    ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
     $response = array();
 
     if (!empty($_POST["inscr_login"]))
     {
+        foreach ($_POST as $key => $value)
+        {
+            $_POST[$key] = htmlspecialchars($value);
+        }
+        
         extract($_POST);
 
         if (file_exists('../DATA/organisateurs.json'))

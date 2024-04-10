@@ -6,7 +6,7 @@ session_start();
 $response = array();
 
 // Vérifie si l'utilisateur est connecté
-if (isset($_SESSION['login'])) 
+if (isset($_SESSION['login']) && isset($_SESSION['scrutin']) && isset($_SESSION['titre']) && isset($_POST['organisateur']))
 {
     // Vérifie si le répertoire DATA existe
     $dataDirectory = '../DATA/DATA_' . $_SESSION['scrutin'];

@@ -1,13 +1,10 @@
 <?php
-
     // Start the session
     session_start();
 
     $response = array();
 
-    // $maVar = htmlspecialchars($_GET[]);
-
-    if (isset($_POST['ajax_submit']))
+    if (isset($_POST['ajax_submit']) && !empty($_POST['ajax_login']) && !empty($_POST['ajax_password']))
     {
         foreach ($_POST as $key => $value)
         {
@@ -31,7 +28,7 @@
                 //on vérifie si le mot de passe correspond au login
                 if ($data[$ajax_login]['password'] == $ajax_password) 
                 {
-                    $response['message'] = 'Bienvenue ';
+                    $response['message'] = 'Bienvenue organisateur.';
                     $response['success'] = true;
                 }
                 else
@@ -40,16 +37,43 @@
                     $response['success'] = false;
                 }
             }
-            else //on viendra vérifier si c'est un votant plus tard
+            else
             {
                 //on vérifie s'il y a une session scrutin et titre
                 if (isset($_SESSION['scrutin']) and isset($_SESSION['titre']))
                 {
-                    $response['message'] = 'Ce login n\'existe pas chez les organisateurs.';
-                    // $response['message2'] = $_SESSION['scrutin'];
-                    // $response['message3'] = $_SESSION['titre'];
-                    $response['success'] = false;
-                    
+                    //on ouvre le fichier json du scrutin
+                    $jsonString = file_get_contents('../DATA/DATA_' . $_SESSION['scrutin'] . '/scrutin.json');
+                    $dataVotant = json_decode($jsonString, true);
+
+                    foreach($dataVotant as $key => $value)
+                    {
+                        foreach($value['votants'] as $key2)
+                        {
+                            if($key2['email']==$ajax_login)
+                            {
+                                //on vérifie si le mot de passe correspond au login
+                                if ($key2['motdepasse'] == $ajax_password) 
+                                {
+                                    $response['message'] = 'Bienvenue votant.';
+                                    $response['success'] = true;
+
+                                    break 2;
+                                }
+                                else
+                                {
+                                    $response['message'] = 'Mot de passe incorrect.';
+                                    $response['success'] = false;
+                                }
+                            }
+                            else
+                            {
+                                $response['message'] = 'Ce login n\'existe pas.';
+                                $response['success'] = false;
+                            }
+                        }
+                    }
+                      
                 }
                 else
                 {
@@ -63,11 +87,29 @@
             //on vérifie s'il y a une session scrutin et titre
             if (isset($_SESSION['scrutin']) and isset($_SESSION['titre']))
             {
-                $response['message'] = 'Ce login n\'existe pas chez les organisateurs.';
-                // $response['message2'] = $_SESSION['scrutin'];
-                // $response['message3'] = $_SESSION['titre'];
-                $response['success'] = false;
-                
+                //on ouvre le fichier json du scrutin
+                $jsonString = file_get_contents('../DATA/DATA_' . $_SESSION['scrutin'] . '/scrutin.json');
+                $dataVotant = json_decode($jsonString, true);
+
+                if (array_key_exists($ajax_login, $dataVotant[$_SESSION['titre']]['votants'])) 
+                {
+                    //on vérifie si le mot de passe correspond au login
+                    if ($dataVotant[$_SESSION['titre']]['votants'][$ajax_login]['password'] == $ajax_password) 
+                    {
+                        $response['message'] = 'Bienvenue votant.';
+                        $response['success'] = true;
+                    }
+                    else
+                    {
+                        $response['message'] = 'Mot de passe incorrect.';
+                        $response['success'] = false;
+                    }
+                }
+                else
+                {
+                    $response['message'] = 'Ce login n\'existe pas.';
+                    $response['success'] = false;
+                }   
             }
             else
             {

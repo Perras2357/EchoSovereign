@@ -51,15 +51,28 @@
                                                 $voix = $existing_voix;
                                                 $voix[$_SESSION['titre']]['votant'][] = array("login" => $_SESSION['login'], 
                                                                             "date" => date('Y-m-d H:i:s'), "voix" => $_POST['vote']);
+
+                                                //on vérifie si le vote existe dans le tableau comptage
+                                                if(array_key_exists($_POST['vote'], $voix[$_SESSION['titre']]['comptage']))
+                                                {
+                                                    $voix[$_SESSION['titre']]['comptage'][$_POST['vote']] += 1;
+                                                }
+                                                else
+                                                {
+                                                    $voix[$_SESSION['titre']]['comptage'][$_POST['vote']] = 1;
+                                                }
                                             } 
                                             else 
                                             {
                                                 //on complete le fichier voix.json avec les données
                                                 $existing_voix[$_SESSION['titre']] = array("votant" => array(array("login" => $_SESSION['login'], 
-                                                                            "date" => date('Y-m-d H:i:s'), "voix" => $_POST['vote'])));
+                                                                            "date" => date('Y-m-d H:i:s'), "voix" => $_POST['vote'])),"comptage" => array($_POST['vote'] =>1));
 
                                                 $voix = $existing_voix;
                                             }
+
+                                            $response['resultat'] = $voix[$_SESSION['titre']]['comptage'];
+
 
                                             // Convertit le tableau en JSON
                                             $voixData = json_encode($voix, JSON_PRETTY_PRINT);               
@@ -89,7 +102,10 @@
                                         {
                                             //crée le fichier voix.json avec les données
                                             $voix[$_SESSION['titre']] = array("votant" => array(array("login" => $_SESSION['login'], 
-                                                                        "date" => date('Y-m-d H:i:s'), "voix" => $_POST['vote'])));
+                                                                        "date" => date('Y-m-d H:i:s'), "voix" => $_POST['vote'])), "comptage" => array($_POST['vote'] => 1));
+
+                                            $response['resultat'] = $voix[$_SESSION['titre']]['comptage'];
+                            
 
                                             // Convertit le tableau en JSON
                                             $voixData = json_encode($voix, JSON_PRETTY_PRINT);

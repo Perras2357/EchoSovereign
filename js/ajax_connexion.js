@@ -50,22 +50,28 @@ function validateFormConnexion()
         {
             if (response.success) 
             {
-                // Rediriger l'utilisateur vers la page d'organisation des scrutins
-                window.location.href = 'controller/organisation_scrutin.php';
+                if(response.message == 'Bienvenue organisateur.')
+                {
+                    // Rediriger l'utilisateur vers la page d'organisation des scrutins
+                    window.location.href = 'controller/organisation_scrutin.php';
+                }
+                else if(response.message == 'Bienvenue votant.')
+                {
+                    // Rediriger l'utilisateur vers la page de vote
+                    window.location.href = 'controller/vote.php';
+                }             
             }
             else if (response.message == 'Ce login n\'existe pas.') 
             {
                 document.getElementById('inscription').innerHTML = '<a href="controller/inscription.php">Pas de compte ? Inscrivez-vous !</a>';
             }
-            else if (response.message == 'Ce login n\'existe pas chez les organisateurs.') 
-            {
-                //redirection vers la page de vote
-                window.location.href = 'controller/vote.php';
-            }
             else 
             {
-                document.getElementById('inscription').innerHTML = response.message;
+                document.getElementById('errorLogin').innerHTML = response.message;                           
             }
+
+            console.log(response.message);
+
         }).fail(function(error) 
         {
             console.log(error);

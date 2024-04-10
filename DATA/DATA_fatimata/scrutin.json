@@ -1,0 +1,177 @@
+{
+    "secretaire": {
+        "organisation": "Paris-saclay",
+        "description": "",
+        "debut": "10-04-2024 18:53:00",
+        "fin": "10-04-2024 18:56:00",
+        "voteSimple": "qui voulez-vous comme secretaire?",
+        "options": [
+            "A1",
+            "A2",
+            "A3"
+        ],
+        "etat": "ouvert",
+        "votants": []
+    },
+    "Premier ": {
+        "organisation": "Paris-saclay",
+        "description": "",
+        "debut": "09-04-2024 19:13:00",
+        "fin": "09-04-2024 19:14:00",
+        "voteSimple": "Vote du president",
+        "options": [
+            "moi",
+            "toi"
+        ],
+        "etat": "ouvert",
+        "votants": [
+            {
+                "email": "moise.ndam-perras@universite-paris-saclay.fr",
+                "motdepasse": "z7JuM6Hs6",
+                "etat_vote": "non",
+                "procuration": 2
+            },
+            {
+                "email": "moiseperras2357@gmail.com",
+                "motdepasse": "A8c7IXfql",
+                "etat_vote": "non",
+                "procuration": 1
+            },
+            {
+                "email": "proteus7532@gmail.com",
+                "motdepasse": "yj9X3SWyJ",
+                "etat_vote": "non",
+                "procuration": 3
+            },
+            {
+                "email": "moise.ndam-perras@universite-paris-saclay.fr",
+                "motdepasse": "2DmvlI968",
+                "etat_vote": "non",
+                "procuration": 2
+            },
+            {
+                "email": "moiseperras2357@gmail.com",
+                "motdepasse": "yhUPIsW4q",
+                "etat_vote": "non",
+                "procuration": 1
+            },
+            {
+                "email": "proteus7532@gmail.com",
+                "motdepasse": "ekDYf52eW",
+                "etat_vote": "non",
+                "procuration": 3
+            }
+        ]
+    },
+    "Premier 23": {
+        "organisation": "Paris-saclay",
+        "description": "kjkjjkjkkjjkkjk",
+        "debut": "10-04-2024 10:49:00",
+        "fin": "10-04-2024 10:50:00",
+        "voteSimple": "president",
+        "options": [
+            "moi",
+            "moi2"
+        ],
+        "etat": "ouvert",
+        "votants": []
+    },
+    "Premier 2345": {
+        "organisation": "Paris-saclay",
+        "description": "kjkjjkjkkjjkkjk",
+        "debut": "10-04-2024 10:50:00",
+        "fin": "10-04-2024 10:54:00",
+        "voteSimple": "president",
+        "options": [
+            "moi",
+            "moi2",
+            "moi23"
+        ],
+        "etat": "ouvert",
+        "votants": [
+            {
+                "email": "moise.ndam-perras@universite-paris-saclay.fr",
+                "motdepasse": "8Z69fPN92",
+                "etat_vote": "non",
+                "procuration": 2
+            },
+            {
+                "email": "moiseperras2357@gmail.com",
+                "motdepasse": "BSxnZesQu",
+                "etat_vote": "non",
+                "procuration": 2
+            }
+        ]
+    },
+    "nouveau4": {
+        "organisation": "Paris-saclay",
+        "description": "kukkukjkj",
+        "debut": "10-04-2024 10:54:00",
+        "fin": "10-04-2024 10:55:00",
+        "voteSimple": ",nvd,nd,ndv,nvn,vd",
+        "options": [
+            "moi",
+            "toi"
+        ],
+        "etat": "ouvert",
+        "votants": [
+            {
+                "email": "moise.ndam-perras@universite-paris-saclay.fr",
+                "motdepasse": "MbTJuOJBO",
+                "etat_vote": "non",
+                "procuration": 1
+            },
+            {
+                "email": "moiseperras2357@gmail.com",
+                "motdepasse": "3ajqtXtRk",
+                "etat_vote": "non",
+                "procuration": 3
+            }
+        ]
+    },
+    "Delegue76": {
+        "organisation": "lkdfklfd",
+        "description": "",
+        "debut": "10-04-2024 10:56:00",
+        "fin": "10-04-2024 10:57:00",
+        "voteSimple": "president",
+        "options": [
+            "moi",
+            "moi76"
+        ],
+        "etat": "ouvert",
+        "votants": [
+            {
+                "email": "moise.ndam-perras@universite-paris-saclay.fr",
+                "motdepasse": "4ikERXXrw",
+                "etat_vote": "non",
+                "procuration": 1
+            },
+            {
+                "email": "moiseperras2357@gmail.com",
+                "motdepasse": "jaV06nguE",
+                "etat_vote": "non",
+                "procuration": 2
+            }
+        ]
+    },
+    "Delegue": {
+        "organisation": "Paris-saclay",
+        "description": "",
+        "debut": "10-04-2024 12:33:00",
+        "fin": "10-04-2024 12:35:00",
+        "voteSimple": "Vote du president",
+        "options": [
+            "moi"
+        ],
+        "etat": "ouvert",
+        "votants": [
+            {
+                "email": "moise.ndam-perras@universite-paris-saclay.fr",
+                "motdepasse": "tE4EWPGja",
+                "etat_vote": "non",
+                "procuration": 1
+            }
+        ]
+    }
+}

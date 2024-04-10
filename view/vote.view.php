@@ -7,7 +7,7 @@
         <div class="row">
             <div class="col-md-12">
                 <h3 class="text-center">Liste des scrutins</h3>
-                <table class="table table-striped">
+                <table class="table table-striped" id="table_scrutin">
                     <thead>
                         <tr>
                             <th scope="col">Titre</th>
@@ -22,7 +22,7 @@
                             <th scope="col">Nombre de Votes</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="tbody_scrutin">
                         <!-- ici on affiche les scrutins venu de l'appel ajax -->
 
                     </tbody>
@@ -30,18 +30,18 @@
             </div>
         </div>
         <div class="row" id='vote'>
-            <form class="col-md-8 offset-md-1" id="form_vote" method="POST" onsubmit="return envoieVote(event)">
-                <div class="col-md-2">
+            <form class="col-md-8 offset-md-2" id="form_vote" method="POST" onsubmit="return envoieVote(event)">
+                <div class="col-md-2 offset-md-4">
                     <h3 id="question">  </h3>                
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-2 offset-md-4">
                     <label for="choix">Reponses : </label>
                     <select class="form-control" id="choix" name="choix">
                         <!-- ici on affiche les options de vote -->
                     </select>  
                     <span style="color: red;" id="erreurVote" class="error"></span><br>               
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-2 offset-md-4">
                     <button type="submit" class="btn btn-primary" id="submit">Voter</button>
                     <span style="color: green;" id="erreurVote" class="error"></span><br>
                 </div>
@@ -49,76 +49,30 @@
         </div>
             
         <!-- div pour afficher les résultat du vote -->
-        <div class="row" id="resultat">
-            <div class="col-md-12">
+        <div class="row" id="liste_resultat">
+            <div class="col-md-10 offset-2">
                 <h3 class="text-center">Resultat du vote</h3>
-                <table class="table table-striped">
+                <table class="table table-striped" id="table_resultat">
                     <thead>
                         <tr>
-                            <th scope="col">Nombre de votants</th>
+                            <th scope="col">Reponse</th>
                             <th scope="col">Nombre de vote</th>
+                            <th scope="col">Pourcentage</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="tbody_resultat">
                         <!-- ici on affiche les résultats du vote -->
                     </tbody>
-                
+                </table>
+            </div>
+            <div class="col-md-10 offset-2" id="taux_participation">
+                <h3 class="text-center">Taux de participation</h3>
+                <p id="participation" class="offset-5 text-success"> </p> 
             </div>
         </div>
 
     </div>
     <script src="../js/ajax_vote.js"></script>
-
-
-
-<script>
-    reponses = [];
-    function afficheResultat()
-    {
-        //appel ajax pour construire le tableau de resultat des résultats
-        $.ajax({
-            url: '../controller/calcule_resultat.php',
-            type: 'POST',
-            data: {action: 'resultat'},
-            dataType : 'json'
-        }).done(function(response)
-                {
-                    if(response.success)
-                    {
-                        //on ajoute les éléments dans thead en fonction des réponses qui se trouve dans reponses
-                        
-
-
-
-                    }
-                    else
-                    {
-                        alert(response.message);
-                    }
-                }).fail(function(error)
-                {
-                    alert('Erreur de chargement des résultats');
-                });
-
-
-    }
-
-        
-        
-
-        
-
-</script>
-
-
-
-
-
-
-
-
-
-
 
 <?php
     require("footer.php");

@@ -8,6 +8,10 @@ $response = array();
 // Vérifie si l'utilisateur est connecté
 if (isset($_POST['organisateur']) && isset($_SESSION['login'])) 
 {
+    foreach ($_POST as $key => $value)
+    {
+        $_POST[$key] = htmlspecialchars($value);        
+    }
     // Vérifie si le répertoire DATA existe
     $dataDirectory = '../DATA/DATA_' . $_SESSION['login'];
     if (file_exists($dataDirectory)) {
@@ -24,7 +28,8 @@ if (isset($_POST['organisateur']) && isset($_SESSION['login']))
                     $scrutins = array();
 
                     // Parcours chaque scrutin
-                    foreach ($scrutinArray as $titre => $scrutinItem) {
+                    foreach ($scrutinArray as $titre => $scrutinItem) 
+                    {
                         // Vérifie l'existence des clés avant d'y accéder
                         $organisation = isset($scrutinItem['organisation']) ? $scrutinItem['organisation'] : '';
                         $description = isset($scrutinItem['description']) ? $scrutinItem['description'] : '';
@@ -46,6 +51,12 @@ if (isset($_POST['organisateur']) && isset($_SESSION['login']))
                             }
                         }
 
+                        //si la date de fin est dépassée et que le scrutin est en cours on le cloture
+                        if (strtotime($fin) < time()) 
+                        {
+                            $etat = 'fermer';
+                        }
+
                         // Stocke les données du scrutin dans un tableau
                         $scrutins[] = array(
                             'titre' => $titre,
@@ -58,19 +69,24 @@ if (isset($_POST['organisateur']) && isset($_SESSION['login']))
                             'nbr_votes' => $nbr_votes
                         );
                     }
-
                     // Stocke les scrutins dans la réponse
                     $response['scrutins'] = $scrutins;
                     $response['success'] = true;
-                } else {
+                } 
+                else 
+                {
                     $response['message'] = 'Le fichier scrutin.json est vide ou le contenu est invalide.';
                     $response['success'] = false;
                 }
-            } else {
+            } 
+            else 
+            {
                 $response['message'] = 'Erreur lors de la lecture du fichier scrutin.json.';
                 $response['success'] = false;
             }
-        } else {
+        } 
+        else 
+        {
             $response['message'] = 'Le fichier scrutin.json n\'existe pas dans le répertoire de données.';
             $response['success'] = false;
         }
