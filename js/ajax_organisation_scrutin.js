@@ -76,11 +76,12 @@ function afficheResultat()
             {
                 //afficher les resultats du tableau de resultats dans la div liste_resultat
                 document.getElementById('liste_resultat').style.display = 'block';
+
+                //nbr_options = Object.keys(response.resultats).length;
                 
                 Object.entries(response.resultats).forEach(([key, value]) => {
-                    $('#liste_resultat #table_resultat #tbody_resultat').append('</tr><tr><td>'+resultat.titre+'</td><td>'+key+'</td><td>'+value+'</td><td class="text-info">'+((value/resultat.nbr_votes)*100).toFixed(2)+'%</td><td>'+taux+'%</td></tr>');
+                    $('#liste_resultat #table_resultat #tbody_resultat').append('</tr><tr><td>'+resultat.titre+'</td><td>'+key+'</td><td>'+value+'</td><td class="text-info">'+((value/resultat.nbr_votants)*100).toFixed(2)+'%</td><td>'+taux+'%</td></tr>');
                 });
-                
                 console.log(response.resultats);
 
             }
@@ -140,7 +141,7 @@ function afficheResultat()
                 }
                 if (donnerProcuration) 
                 {
-                    nombreProcuration = 0;
+                    nombreProcuration = -1;
                 }
                 
                 // Réinitialiser le message d'erreur
@@ -161,9 +162,10 @@ function afficheResultat()
                 
                 // Ajouter la nouvelle ligne au tableau
                 document.getElementById('tableBody').innerHTML += newRow;
+                console.log(nombreProcuration);
 
                 // Ajouter les valeurs dans le tableau votants avec pour clé rowId
-                votants[rowId] = {email: email, nombreProcuration: nombreProcuration};
+                votants[rowId] = {email: email, nombreProcuration: nombreProcuration, donnerProcuration: donnerProcuration};
                 
                 // Réinitialiser les champs
                 document.getElementById('email').value = '';

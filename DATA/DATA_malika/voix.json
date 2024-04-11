@@ -1,0 +1,20 @@
+{
+    "Premier": {
+        "votant": [
+            {
+                "login": "moiseperras2357@gmail.com",
+                "date": "2024-04-11 14:15:39",
+                "voix": "rS63QmQ5oHATtHLzYaOg4J0nR8XyBLxTKe92Oeg34QnTJQYbLVeZB+8EmJLNlVrwsbRwiY0HOjHtRygG2AS\/gu2NykX2WSnqhH61jCwo2DpvqzFTSwryQj70LOC2aQoOMAI8Iu6krVRnemRQx+\/mTDfE6Bb519PNlxtTksRnT8E="
+            },
+            {
+                "login": "moiseperras2357@gmail.com",
+                "date": "2024-04-11 14:15:44",
+                "voix": "w7K3IhhFcmRsUhKcTaHvXDW9ynmeA5b+6A5qZiZQgDQ5N4WY1zfymz4G0lNtc9D\/czFQ9w\/he\/JDoJKPzRsdUVRp+5JnW6bQbHMWCQfNpnErB1SVd\/WWHe4HmQeNpFQY2yTYLR13nFma7ts2HMo75qusXTe2VNaJrhuNeXeDcMU="
+            }
+        ],
+        "comptage": {
+            "toi": 1,
+            "nous": 1
+        }
+    }
+}

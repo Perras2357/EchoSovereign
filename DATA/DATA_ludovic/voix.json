@@ -1,0 +1,20 @@
+{
+    "PRESIDENTIEL": {
+        "votant": [
+            {
+                "login": "chatgptsaclay@gmail.com",
+                "date": "2024-04-11 12:12:33",
+                "voix": "0uJyIyowBIPYiqqdbSqB7ojCD6hvcgWUj0Dlx9taDvauX88hZ6\/2HKsDDyqMQsNGvZ793\/waQAfTIlUAzq7eLV\/mp\/eSmtIO7Rp7MvV5cVM7hbMYUxaF4PE7SbWi1t\/Sfh5Fdmh4RmFx+19+br608sWVgTmEND3a8eEhPQPLInY="
+            },
+            {
+                "login": "chatgptsaclay@gmail.com",
+                "date": "2024-04-11 12:12:38",
+                "voix": "Hd5eYW1poSdSfstecFGaq5bpsudmOnN8d52zBtK5Ygg3kCKf3kVmiZORpU6QOKy7p0O7QWNTSElNfm0OQrXlnpvVw5FaKhdxZEBqIKYq4mp8rDBY17vrkwQG7aUUOUo9H3xYSH8RYUzMWQtADOwr6xzGwOvKyaLqOctms64u5Aw="
+            }
+        ],
+        "comptage": {
+            "TOTO2": 1,
+            "TOTO3": 1
+        }
+    }
+}

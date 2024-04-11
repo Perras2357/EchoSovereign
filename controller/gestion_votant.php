@@ -18,15 +18,20 @@
             //******************************************************************************************* */
             foreach ($votants as $vt) 
             {
+                $etat_vote = "non";
                 $vt['nombreProcuration'] = intval($vt['nombreProcuration']) +1;
+                if($vt['nombreProcuration']==0)
+                {
+                    $etat_vote = "oui";
+                }
 
 
                 $motdepasse = generateRandomPassword();
 
-                $authentification_votant[] = array("email" => $vt['email'], "motdepasse" => $motdepasse, "etat_vote"=>"non", "procuration"=>$vt['nombreProcuration']);
+                $authentification_votant[] = array("email" => $vt['email'], "motdepasse" => $motdepasse, "etat_vote"=>$etat_vote, "procuration"=>$vt['nombreProcuration']);
 
                 //on crée un tableau avec le mail, le mot de passe et le lien contenant le scrutin et le mot de passe
-                $message = "href='http://localhost/EchoSovereign/?scrutin=".$_SESSION['scrutin']."&titre".$_SESSION['titre'];
+                $message = "href='http://localhost/EchoSovereign/?scrutin=".$_SESSION['login']."&titre=".$_SESSION['titre'];
                 $data_info[$vt['email']] = array("email" => $vt['email'], "motdepasse" => $motdepasse, "lien" => $message);
                 //on crée le fichier json
                 $jsonInfo = json_encode($data_info, JSON_PRETTY_PRINT);
@@ -34,7 +39,7 @@
                 file_put_contents('../DATA/DATA_'.$_SESSION['login'].'/info.json', $jsonInfo);
 
                 //on crée un tableau associatif avec les données du formulaire
-                $data[$_SESSION['titre']]['votants'][] = array("email" => $vt['email'], "motdepasse" => $motdepasse,"etat_vote"=>"non",  "procuration"=>$vt['nombreProcuration']);
+                $data[$_SESSION['titre']]['votants'][] = array("email" => $vt['email'], "motdepasse" => $motdepasse,"etat_vote"=>$etat_vote,  "procuration"=>$vt['nombreProcuration']);
                 //on convertit le tableau associatif en format json
                 $json_data = json_encode($data, JSON_PRETTY_PRINT);
                 //on écrit le json dans le fichier
@@ -51,12 +56,17 @@
             //******************************************************************************************* */
             foreach ($votants as $vt) 
             {
+                $etat_vote = "non";
                 $vt['nombreProcuration'] = intval($vt['nombreProcuration']) +1;
+                if($vt['nombreProcuration']==0)
+                {
+                    $etat_vote = "oui";
+                }
 
                 $motdepasse = generateRandomPassword();
 
                 //on crée un tableau avec le mail, le mot de passe et le lien contenant le scrutin et le mot de passe
-                $message = "href='http://localhost/EchoSovereign/?scrutin=".$_SESSION['scrutin']."&titre".$_SESSION['titre'];
+                $message = "href='http://localhost/EchoSovereign/?scrutin=".$_SESSION['login']."&titre=".$_SESSION['titre'];
                 $tableauInfo[$vt['email']] = array("email" => $vt['email'], "motdepasse" => $motdepasse, "lien" => $message);
                 //on crée le fichier json
                 $jsonInfo = json_encode($tableauInfo, JSON_PRETTY_PRINT);
@@ -64,7 +74,7 @@
                 file_put_contents('../DATA/DATA_'.$_SESSION['login'].'/info.json', $jsonInfo);
 
                 //on crée un tableau associatif avec les données du formulaire
-                $data[$votant] = array("email" => $vt['email'], "motdepasse" => $motdepasse, "etat_vote"=>"non", "procuration"=>$vt['nombreProcuration']);
+                $data[$votant] = array("email" => $vt['email'], "motdepasse" => $motdepasse, "etat_vote"=>$etat_vote, "procuration"=>$vt['nombreProcuration']);
                 //on convertit le tableau associatif en format json
                 $json_data = json_encode($data, JSON_PRETTY_PRINT);
                 //on écrit le json dans le fichier

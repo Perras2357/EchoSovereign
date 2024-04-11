@@ -1,28 +1,4 @@
 {
-    "mperras": {
-        "login": "mperras",
-        "password": "2357"
-    },
-    "Z": {
-        "login": "Z",
-        "password": "1234"
-    },
-    "alida": {
-        "login": "alida",
-        "password": "1234"
-    },
-    "ndam": {
-        "login": "ndam",
-        "password": "1234"
-    },
-    "mndam": {
-        "login": "mndam",
-        "password": "1234"
-    },
-    "fatimata": {
-        "login": "fatimata",
-        "password": "12345"
-    },
     "nperras": {
         "login": "nperras",
         "password": "$2y$10$5ziBnzpx4rtDyRmH8Px.9.\/4NY\/0iryIomdqdIZswcx3cwX5H.kdy"
@@ -34,5 +10,13 @@
     "adrien": {
         "login": "adrien",
         "password": "$2y$10$Mz1pbNHwE7cdEPPmST.mGePIwK7k8bIOVoL4wY\/yb4F8Ev8I3idme"
+    },
+    "ludovic": {
+        "login": "ludovic",
+        "password": "$2y$10$PK0Dy0ZAZ2e01yI6kTXu6.xccjlgC8sIj8T7P14IDN6CZnFlS56GK"
+    },
+    "malika": {
+        "login": "malika",
+        "password": "$2y$10$9at7.KtN9QGcqa0ESFx0jONTeevRyIpDqppnWuPnI\/4jNbnu4M5gG"
     }
 }

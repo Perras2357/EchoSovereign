@@ -22,13 +22,17 @@ function afficheResultat()
         {
             //afficher les resultats du tableau de resultats dans la div liste_resultat
             document.getElementById('liste_resultat').style.display = 'block';
+
+            nbr_key = Object.keys(response.resultats).length;
+            nombre_voix = 0;
             
             Object.entries(response.resultats).forEach(([key, value]) => {
-                $('#liste_resultat #table_resultat #tbody_resultat').append('</tr><tr><td>'+key+'</td><td>'+value+'</td><td class="text-info">'+((value/nbr_votes)*100).toFixed(2)+'%</td></tr>');
+                $('#liste_resultat #table_resultat #tbody_resultat').append('</tr><tr><td>'+key+'</td><td>'+value+'</td><td class="text-info">'+((value/nbr_key)*100).toFixed(2)+'%</td></tr>');
+                nombre_voix += value;
             });
             
                 //on affiche le taux de participation
-            var taux = ((nbr_votes / nbr_votants) * 100).toFixed(2);
+            var taux = ((nombre_voix / nbr_votants) * 100).toFixed(2);
             document.getElementById('participation').textContent = taux+'%';
             console.log(response.resultats);
 
