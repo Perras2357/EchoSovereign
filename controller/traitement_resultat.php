@@ -45,7 +45,6 @@
             // Convertit le tableau en JSON
             $voixData = json_encode($voix, JSON_PRETTY_PRINT);               
             file_put_contents($voixFile, $voixData);
-            chmod($voixFile, 0777);
         }
     }
     else
