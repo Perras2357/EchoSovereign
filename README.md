@@ -1,0 +1,1 @@
+EchoSovereign simplifie le processus de vote en permettant aux organisateurs de créer et de gérer facilement des scrutins, tout en offrant aux participants une expérience fluide et sécurisée pour exprimer leur choix.
